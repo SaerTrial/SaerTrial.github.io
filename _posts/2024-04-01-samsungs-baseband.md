@@ -52,11 +52,11 @@ Notably, the most interesting part is where the MAIN and BOOT sections start, an
 
 Having above information, we load raw data corresponding to BOOT and MAIN sections into Ghidra, then perform an auto analysis.
 
-![Image alt]({{ site.baseurl }}/asset/image/2024-04-01-samsungs-baseband/boot-section.png "analyzed boot section").
+![Image alt]({{ site.baseurl }}/assets/image/2024-04-01-samsungs-baseband/boot-section.png "analyzed boot section").
 
 At the address 0x40000000, we see a branch statement that jumps to reset the firmware - that is to prepare initial environment for normal execution, e.g., setting up exception and interrupt vectors, initializing registers. Unfortunately, due to some missing peripherals, e.g., UART, I2C that an emulator may not be able to handle without knowledge, the whole emulation may get blocked as the following image dipected, where the program enters into 0x40000124, then loops forever. 
 
-![Image alt]({{ site.baseurl }}/asset/image/2024-04-01-samsungs-baseband/blocked.png "program enters into a dead loop.")
+![Image alt]({{ site.baseurl }}/assets/image/2024-04-01-samsungs-baseband/blocked.png "program enters into a dead loop.")
 
 # Supporting a new CPU model
 

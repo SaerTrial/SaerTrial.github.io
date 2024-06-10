@@ -6,7 +6,7 @@ categories:
 - firmware reversing
 ---
 
-In this post, I will be solving a Capture the Flag (CTF) challenge that was originally from PCTF but later modified by a book dedicated to CTF-bootcamp. This challenge requires CTF players to emulate an [ARM firmware image]({{ site.baseurl }}/asset/binary/2024-04-09-confused-arm/confusedARM.hex) and correct a faulty cryptography implementation in the firmware logic.
+In this post, I will be solving a Capture the Flag (CTF) challenge that was originally from PCTF but later modified by a book dedicated to CTF-bootcamp. This challenge requires CTF players to emulate an [ARM firmware image]({{ site.baseurl }}/assets/binary/2024-04-09-confused-arm/confusedARM.hex) and correct a faulty cryptography implementation in the firmware logic.
 
 # Examinating the unknown firmware image
 To make this challenge more down-to-earth, I always assume that the name of firmware file will not uncover any architectural information, and analysts hence need to identify its arch manually.
@@ -101,7 +101,7 @@ FindSuperLoop.py> Finished!
 ```
 
 Upon examinating all functions, only the one located at 0x08001084 satisfies. Let us take a look at its decompiled code done by Ghidra (beware that I pick up meaningful parts of code to present):
-![Image alt]({{ site.baseurl }}/asset/image/2024-04-09-confused-arm/superloop.png "Raw superloop").
+![Image alt]({{ site.baseurl }}/assets/image/2024-04-09-confused-arm/superloop.png "Raw superloop").
 
 
 As checking this function, I identify one key and one potential encryption/descrption process, then assume that flat to be printed out is encrypted or decrypted string. Moreover, FUN_08000ba4 is an UART output function and it outputs two crucial information - key and flag. Thus, It is necessary to run it anyway.
@@ -171,7 +171,7 @@ DECIMAL       HEXADECIMAL     DESCRIPTION
 ```
 
 Cool, I now figure it out and review the superloop function again. Accoring to my crypto knowledge, after renaming all key crypto-related functions, the superloop looks like:
-![Image alt]({{ site.baseurl }}/asset/image/2024-04-09-confused-arm/modified-superloop.png "Modified superloop").
+![Image alt]({{ site.baseurl }}/assets/image/2024-04-09-confused-arm/modified-superloop.png "Modified superloop").
 
 
 This process is encryption when I realize that 16 bytes of input starting at DAT_08001110 are null. Three parameters of `AES_Encrypt` from left to right could be AES states, cipher, and an extended key.
