@@ -117,9 +117,20 @@ undefined8 edit_diary(void)
 ```
 
 ## Identifying threat models
-Through initial inspection in the previous section, I identified a few vulnerable points:
+Through the initial inspection in the previous section, I identified a few vulnerable points:
 * heap overflow
 * use-after-use
 * information leak
 
-The first two points are relatively observable, while information leak is accomplished in the combination of other two somehow.
+The first two points are relatively observable, while information leak is accomplished by the combination of other two somehow, potentially leaking the crucial information to be leveraged sooner, e.g., base address of libc. The subsection will cover the detail of these vulnerabilities along with introducing essential basics about heap memory management.
+
+### Overflowing allocated memory
+Due to the aforementioned 8-byte overflow, 
+
+### Getting top chunk freed
+
+### Gaining control over fastbin
+
+### Taking over on control flow
+
+### Searching for proper one-gadget
