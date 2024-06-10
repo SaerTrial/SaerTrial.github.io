@@ -2,11 +2,13 @@
 title: A very typical heap challenge
 categories:
 - ctf/pwn
+- heap
 ---
 
-This post demonstrates an in-depth analysis of a fairly typical heap challenge - fastbin attack. Even though this is a very first time on analyzing heap challenges, it does not mean that I have to follow common approaches, limiting the use of other novel techiniques. Additionally, I find it more educative to share some patterns of this type of vulnerability, so as to apply those patterns in a next similar challenge. The [attachment]({{ site.baseurl }}/assets/binary/2024-06-10-ciscn-fastbin-attach.md/orange_cat_diary_cffa870fbc6e887360d16817570431a9.zip) consists of an executable and a libc library of the version 2.23. 
+This post demonstrates an in-depth analysis of a fairly typical heap challenge - fastbin attack. Even though this is a very first time on analyzing heap challenges, it does not mean that I have to follow common approaches, limiting the use of other novel techiniques. Additionally, I find it more educative to share some patterns of this type of vulnerability, so as to apply those patterns in a next similar challenge. The [attachment]({{ site.baseurl }}/assets/binary/2024-06-10-ciscn-fastbin-attach.md/orange_cat_diary_cffa870fbc6e887360d16817570431a9.zip) consists of an executable and a libc library of the version 2.23. This challenge comes from CISCN 2024.
 
 ## Understanding the application logic
+
 Loading this binary rather than libc file into Ghidra, it can be seen that this is a command-line binary, serving the management of a user-created diary. Its main functionality mainly manifests as creation of a new diary, modification, deletion, and display. The decompiled pseudo C code of its main function is shown as following:
  
 ```c
@@ -117,6 +119,7 @@ undefined8 edit_diary(void)
 ```
 
 ## Identifying threat models
+
 Through the initial inspection in the previous section, I identified a few vulnerable points:
 * heap overflow
 * use-after-use
@@ -125,11 +128,80 @@ Through the initial inspection in the previous section, I identified a few vulne
 The first two points are relatively observable, while information leak is accomplished by the combination of other two somehow, potentially leaking the crucial information to be leveraged sooner, e.g., base address of libc. The subsection will cover the detail of these vulnerabilities along with introducing essential basics about heap memory management.
 
 ### Overflowing allocated memory
-Due to the aforementioned 8-byte overflow, 
+
+Thanks to the aforementioned 8-byte overflow, attackers maybe able to manipulate the content of adjacent chunk if they allocate memory with a proper size. Beware that the first allocated chunk does not calculate the field `prev_size` into the field `size` as its `P` flag is set as 1 by default. This is to say, while allocating a block with 24 bytes, the actual size of this chunk is 0x20, which does not preserve for  `prev_size`. Let us validate that by adding a diary with the size of 24 bytes:
+```
+Please input your choice:1                                                                                                
+Please input the length of the diary content:24                                                                           
+Please enter the diary content:                                                                                           
+aaaa                                                                                                                      
+Diary addition successful.
+```
+
+At this moment, enter into interactive mode by sending an interrupt signal (Ctrl + C or equivalent) to GDB. Type the command `heap chunks` to enable heap analysis:
+```bash
+gef➤  heap chunks 
+Chunk(addr=0x5dd9313f3010, size=0x20, flags=PREV_INUSE | IS_MMAPPED | NON_MAIN_ARENA)
+    [0x00005dd9313f3010     61 61 61 61 0a 00 00 00 00 00 00 00 00 00 00 00    aaaa............]
+Chunk(addr=0x5dd9313f3030, size=0x20fe0, flags=PREV_INUSE | IS_MMAPPED | NON_MAIN_ARENA)  ←  top chunk
+gef➤  x/10xg 0x00005dd9313f3010-0x10
+0x5dd9313f3000: 0x0000000000000000      0x0000000000000021
+0x5dd9313f3010: 0x0000000a61616161      0x0000000000000000
+0x5dd9313f3020: 0x0000000000000000      0x0000000000020fe1
+0x5dd9313f3030: 0x0000000000000000      0x0000000000000000
+0x5dd9313f3040: 0x0000000000000000      0x0000000000000000
+```
+
+As shown above, he size of this chunk is 0x21, setting `P` flag as 1 and indicating the previous chunk being in use. Therefore, the size is actually composed of 8 bytes of `size` field and 24 bytes of the user-requested area. Note that the binary is running on x86-64 machine and thus `size` field occupies 8 bytes.
+
+It is clear that 8-byte overflow on this chunk will cover the value of `size` field of next chunk, which is the top chunk! Now the remaining space of the top chunk is 20fe1. Hackers could modify as 0xfe1, requesting a chunk of size larger than the modified size of the top chunk and forcing heap managament program to service this allocation by extending the current top chunk. Moreover, the old chunk is being freed and the new top chunk is next to the end of the old one. 
+
 
 ### Getting top chunk freed
 
+For convenience, I modified the size of top chunk straightaway without writing a script for this moment. 
+
+```bash
+gef➤  set *(0x5dd9313f3020+0x8)=0xfe1
+gef➤  x/10xg 0x00005dd9313f3010-0x10
+0x5dd9313f3000: 0x0000000000000000      0x0000000000000021
+0x5dd9313f3010: 0x0000000a61616161      0x0000000000000000
+0x5dd9313f3020: 0x0000000000000000      0x0000000000000fe1
+0x5dd9313f3030: 0x0000000000000000      0x0000000000000000
+0x5dd9313f3040: 0x0000000000000000      0x0000000000000000
+```
+
+Turning to continued execution of the target binary, we need to allocate a new chunk of size larger than 0xfe1, which could be 0x1000, satisfying the validity checking. 
+
+```bash
+gef➤  c                                                                                                          [44/1968]
+Continuing.                                                                                                               
+1                                                                                                                         
+Please input the length of the diary content:4096                                                                         
+Please enter the diary content:                                                                                           
+aaaa                                                                                                                      
+Diary addition successful.
+```
+
+By checking the current heap bins, I found the freed top chunk has been placed on unsorted bins since the size of the Top chunk, when it is freed, is larger than the fastbin sizes and it got added to list of unsorted bins.
+```bash
+gef➤  heap bins unsorted 
+──────────────────────────────────────── Unsorted Bin for arena at 0x75f79afc4b20 ────────────────────────────────────────
+[+] unsorted_bins[0]: fw=0x5dd9313f3020, bk=0x5dd9313f3020
+ →   Chunk(addr=0x5dd9313f3030, size=0xfc0, flags=PREV_INUSE | IS_MMAPPED | NON_MAIN_ARENA)
+[+] Found 1 chunks in unsorted bin.
+```
+
+Notably, there are two conditions to be met if we want to have the free old chunk added to unsorted bins:
+* Top chunk's size has to be page aligned (the end of top chunk should be page aligned)
+* Top chunk's prev_inuse bit has to be set
+
+
 ### Gaining control over fastbin
+
+
+
+
 
 ### Taking over on control flow
 
