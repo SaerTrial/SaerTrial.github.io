@@ -475,6 +475,9 @@ Coming back to the previously raised questions, we might have some sense, right?
 
 ## Ref
 [1] https://xia0ji233.pro/2024/05/19/CISCN2024/index.html
+
 [2] https://github.com/shellphish/how2heap/blob/master/glibc_2.23/house_of_orange.c
+
 [3] https://ctf-wiki.org/en/pwn/linux/user-mode/heap/ptmalloc2/fastbin-attack/#arbitrary-alloc
+
 [4] https://sploitfun.wordpress.com/2015/02/10/understanding-glibc-malloc/
