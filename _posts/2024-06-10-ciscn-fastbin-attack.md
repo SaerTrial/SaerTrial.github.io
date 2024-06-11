@@ -15,6 +15,8 @@ Before a deep-dive, I raise a few general questions, leading us to build the tra
 
 ## Understanding the application logic
 
+### Reversing the binary
+
 Loading this binary rather than libc file into Ghidra, it can be seen that this is a command-line binary, serving the management of a user-created diary. Its main functionality mainly manifests as creation of a new diary, modification, deletion, and display. The decompiled pseudo C code of its main function is shown as following:
  
 ```c
