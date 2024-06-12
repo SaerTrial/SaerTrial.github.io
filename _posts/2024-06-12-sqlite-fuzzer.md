@@ -81,10 +81,10 @@ Here, it can be seen in a way that all of database names come from a pre-define 
 
 ### Arranging various fuzzing stages
 
-Until now, the fuzzer seems working out, generating valid inputs with the help of applied constraints. However, database is quite a complex software program that maintains a lot of states while running. If we strive for much higher branch coverage, guiding sqlite3 into a crafted context is a good approach to meet an increase. In other words, we need to prepare sqlite being in a state we expect by feeding different types of input in an order. For my implementation, I categorize all commands somehow, e.g., create_database and create_table are in a creation category.
+Until now, the fuzzer seems working out, generating valid inputs with the help of applied constraints. However, database is quite a complex software program that maintains a lot of states while running. If we strive for much higher branch coverage, guiding sqlite3 into a crafted context is a good approach to meet an increase. In other words, we need to prepare sqlite being in a state we expect by feeding different types of input in an order. For my implementation, all commands are divided into four categories - create, insert, query and misc. For example, create_database and create_table are in a creation category.
 
 A round of fuzz testing finally manifest as:
-1. creation (200 inputs)
+1. create (200 inputs)
 2. insert (800 inputs)
 3. query (4000 inputs)
 4. misc (~)
