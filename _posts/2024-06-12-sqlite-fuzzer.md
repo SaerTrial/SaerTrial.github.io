@@ -99,5 +99,6 @@ Once the fuzz testing is done, a coverage report that details whether a function
 
 ## Evaluation results (TODO)
 
-Evaluate this fuzzer in measuring coverage by different number of inputs, e.g., 200K, 400K, 1000K. Each scale of input size goes through testing ten times.
+Evaluate this fuzzer in measuring coverage by different number of inputs, e.g., 200K, 400K, 1000K. Each input size will be tested ten times. 
+
 
