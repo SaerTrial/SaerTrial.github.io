@@ -92,7 +92,7 @@ A round of fuzz testing finally manifest as:
 Beware that each stage in a round ties into different perspectives and someone may consider more inputs in any of these stages or propose a more grained stage.
 
 
-## Evaluation results
+## Evaluation results (TODO)
 
 Evaluate this fuzzer in measuring coverage by different number of inputs, e.g., 200K, 400K, 1000K. Each scale of input size goes through testing ten times.
 
