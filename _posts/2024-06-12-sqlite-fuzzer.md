@@ -91,6 +91,11 @@ A round of fuzz testing finally manifest as:
 
 Beware that each stage in a round ties into different perspectives and someone may consider more inputs in any of these stages or propose a more grained stage.
 
+### Introducing more contraints by referring to coverage report
+
+Once the fuzz testing is done, a coverage report that details whether a function is executed is generated. One could attempt to improve his grammar or apply more constraints in the grammar to reach these missed-out functions.
+
+
 
 ## Evaluation results (TODO)
 
