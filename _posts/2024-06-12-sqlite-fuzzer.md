@@ -84,10 +84,10 @@ Here, it can be seen in a way that all of database names come from a pre-define 
 Until now, the fuzzer seems working out, generating valid inputs with the help of applied constraints. However, database is quite a complex software program that maintains a lot of states while running. If we strive for much higher branch coverage, guiding sqlite3 into a crafted context is a good approach to meet an increase. In other words, we need to prepare sqlite being in a state we expect by feeding different types of input in an order. For my implementation, all commands are divided into four categories - create, insert, query and misc. For example, create_database and create_table are in a creation category.
 
 A round of fuzz testing finally manifest as:
-1. create (200 inputs)
-2. insert (800 inputs)
-3. query (4000 inputs)
-4. misc (~)
+1. create (10000 inputs)
+2. insert (10000～30000 inputs)
+3. query (30000～70000 inputs)
+4. misc (70000～)
 
 Beware that each stage in a round ties into different perspectives and someone may consider more inputs in any of these stages or propose a more grained stage.
 
@@ -99,6 +99,11 @@ Once the fuzz testing is done, a coverage report that details whether a function
 
 ## Evaluation results (TODO)
 
-Evaluate this fuzzer in measuring coverage by different number of inputs, e.g., 200K, 400K, 1000K. Each input size will be tested ten times. 
+![branch coverage]([/blog/images/something.pdf](https://github.com/SaerTrial/sqlite-fuzzer/blob/main/project1/branch_coverage_median.pdf) "10 runs of experiments have been conducted with a setting where orange areas are filled between the lower and upper bounds of 80% confidence interval for a median."). 
+
+As the evaluation diagram illustrated, the branch coverage after the phase of generating 10000 "create"-related commands reaches to roughly 36%; Following that, the increase by 20000 "insert" inputs is not as steep as that of the previous stage. These inputs contribute to nearly 1.5% growth; 40000 "query" commands see a very slight boost in branch coverage; This situation also happens to "misc" stage. At the end, about 38.5% branch coverage is reached when 100000 inputs were fully executed.
+
+With the help of 80% confidence level, it is clear that orange shadow areas are coveraged around the line draw with medians and this indicates the stability of growth in branch coverage with this approach. 
+
 
 
