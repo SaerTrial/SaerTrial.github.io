@@ -97,7 +97,7 @@ Once the fuzz testing is done, a coverage report that details whether a function
 
 
 
-## Evaluation results (TODO)
+## Evaluation results
 
 ![Image alt]({{ site.baseurl }}/assets/image/2024-06-12-sqlite-fuzzer/branch_coverage_median.png "10 runs of experiments have been conducted with a setting where orange areas are filled between the lower and upper bounds of 80% confidence interval for a median."). 
 
