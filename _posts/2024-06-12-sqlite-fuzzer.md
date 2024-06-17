@@ -105,7 +105,6 @@ This diagram consists of a blue line and orange-covered areas. The blue line rep
 
 As the evaluation diagram illustrated, the branch coverage after the phase of generating 10000 "create"-related commands reaches to roughly 36%; Following that, the increase by 20000 "insert" inputs is not as steep as that of the previous stage. These inputs contribute to nearly 1.5% growth; 40000 "query" commands see a very slight boost in branch coverage; This situation also happens to "misc" stage. At the end, about 38.5% branch coverage is reached when 100000 inputs were fully executed.
 
-With the help of 80% confidence level, it is clear that orange shadow areas are coveraged around the line draw with medians and this indicates the stability of growth in branch coverage with this approach. 
+With the help of 80% confidence level, it is clear that orange shadow areas are coveraged around the line draw with medians and this indicates the stability of growth in branch coverage about this approach. 
 
-
-
+Overall, the primary converaging point takes place at "create" stage. This means a lot of utility functions in sqlite3 have been executed through this stage. The follow-up stages potentially contribute more edge cases, which may include unknown or known bugs.
