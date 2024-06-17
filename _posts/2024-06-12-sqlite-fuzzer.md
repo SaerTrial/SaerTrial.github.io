@@ -99,7 +99,7 @@ Once the fuzz testing is done, a coverage report that details whether a function
 
 ## Evaluation results (TODO)
 
-![Image alt]({{ site.baseurl }}/assets/image/2024-06-12-sqlite-fuzzer/branch_coverage_median.pdf "10 runs of experiments have been conducted with a setting where orange areas are filled between the lower and upper bounds of 80% confidence interval for a median."). 
+![branch coverage]({{ site.baseurl }}/assets/image/2024-06-12-sqlite-fuzzer/branch_coverage_median.pdf "10 runs of experiments have been conducted with a setting where orange areas are filled between the lower and upper bounds of 80% confidence interval for a median."). 
 
 
 As the evaluation diagram illustrated, the branch coverage after the phase of generating 10000 "create"-related commands reaches to roughly 36%; Following that, the increase by 20000 "insert" inputs is not as steep as that of the previous stage. These inputs contribute to nearly 1.5% growth; 40000 "query" commands see a very slight boost in branch coverage; This situation also happens to "misc" stage. At the end, about 38.5% branch coverage is reached when 100000 inputs were fully executed.
