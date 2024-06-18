@@ -80,7 +80,7 @@ grammar  = {
 Here, it can be seen in a way that all of database names come from a pre-define list, and in turn detachment commands will be generated according to that list, such that there is a high chance that sqlite3 could detach a database that has been previously created. This is why we need some constraints, leading input generation towards validity. Cool, once we are carefully done with a bunch of setting of constraints, we could see a huge boost in branch coverage.
 
 
-### <a name="statefulness"></a>Arranging various fuzzing stages (statefulness)
+### Arranging various fuzzing stages (statefulness)
 
 Until now, the fuzzer seems working out, generating valid inputs with the help of applied constraints. However, database is quite a complex software program that maintains a lot of states while running. If we strive for much higher branch coverage, guiding sqlite3 into a crafted context is a good approach to meet an increase. In other words, we need to prepare sqlite being in a state we expect by feeding different types of input in an order. For my implementation, all commands are divided into four categories - create, insert, query and misc. For example, create_database and create_table are in a creation category.
 
@@ -114,6 +114,6 @@ Overall, the primary converaging point takes place at "create" stage. This means
 
 ## Improvement - inspect which function has not been covered
 
-The best ever branch coverage is roughly over than 40% before I adjusted the certain number of inputs for each fuzzing stage as [above](###statefulness). It could be interesting to figure out why this change without removing any of stages led to obvious difference in branch coverage. 
+The best ever branch coverage is roughly over than 40% before I adjusted the certain number of inputs for each fuzzing stage as above. It could be interesting to figure out why this change without removing any of stages led to obvious difference in branch coverage. 
 
 Additionally, it is interesting to cover those functions that require a complex and dedicated combination of commands for reach, e.g., memory management functions. As far as I know from previous coverage reports, there is a certainly significant number of memory-related functions that have not been covered. 
