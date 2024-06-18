@@ -79,7 +79,7 @@ grammar  = {
 
 Here, it can be seen in a way that all of database names come from a pre-define list, and in turn detachment commands will be generated according to that list, such that there is a high chance that sqlite3 could detach a database that has been previously created. This is why we need some constraints, leading input generation towards validity. Cool, once we are carefully done with a bunch of setting of constraints, we could see a huge boost in branch coverage.
 
-### Arranging various fuzzing stages
+### Statefulness - Arranging various fuzzing stages
 
 Until now, the fuzzer seems working out, generating valid inputs with the help of applied constraints. However, database is quite a complex software program that maintains a lot of states while running. If we strive for much higher branch coverage, guiding sqlite3 into a crafted context is a good approach to meet an increase. In other words, we need to prepare sqlite being in a state we expect by feeding different types of input in an order. For my implementation, all commands are divided into four categories - create, insert, query and misc. For example, create_database and create_table are in a creation category.
 
@@ -88,6 +88,8 @@ A round of fuzz testing finally manifest as:
 2. insert (10000～30000 inputs)
 3. query (30000～70000 inputs)
 4. misc (70000～)
+
+Thanks to such a structure of input generation, we could more or less retain statefulness, considering dependency between those commands. Similarly, fuzzing network protocols also requires stateful input organization, leading to our desire states for testing from the starting point.
 
 Beware that each stage in a round ties into different perspectives and someone may consider more inputs in any of these stages or propose a more grained stage.
 
