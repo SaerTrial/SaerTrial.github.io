@@ -113,14 +113,12 @@ Once the fuzz testing is done, a coverage report that details whether a function
 
 This diagram consists of a blue line and orange-covered areas. The blue line represents median values for n rounds of experiment, while the orange zones indicate the low and upper bounds for these median values. This is to say, given a certain confidence level, we could how stable each experiment could be in terms of growth of branch coverage.
 
-As the evaluation diagram illustrated, the branch coverage after the phase of generating 10000 "create"-related commands reaches to roughly 36%; Following that, the increase by 20000 "insert" inputs is not as steep as that of the previous stage. These inputs contribute to nearly 1.5% growth; 40000 "query" commands see a very slight boost in branch coverage; This situation also happens to "misc" stage. At the end, about 38.5% branch coverage is reached when 100000 inputs were fully executed.
+As the evaluation diagram illustrated, the branch coverage reaches to roughly 36% as soon as three rounds of input have been generated. 
 
-With the help of 80% confidence level, it is clear that orange shadow areas are coveraged around the line draw with medians and this indicates the stability of growth in branch coverage about this approach. 
+Following these, the branch coverage sees a boost, rising to approximately 41% after two rounds of bruteforce and misc states.
 
-Overall, the primary converaging point takes place at "create" stage. This means a lot of utility functions in sqlite3 have been executed through this stage. The follow-up stages potentially contribute more edge cases, which may include unknown or known bugs.
+Finally, we could see this in a way that the shadow area represents 80% interval, indicating nearly no difference in branch coverage of all testing. 
 
-## Improvement - inspect which function has not been covered
-
-The best ever branch coverage is roughly over than 40% before I adjusted the certain number of inputs for each fuzzing stage as above. It could be interesting to figure out why this change without removing any of stages led to obvious difference in branch coverage. 
+## Improvement - inspect which function has not been covered 
 
 Additionally, it is interesting to cover those functions that require a complex and dedicated combination of commands for reach, e.g., memory management functions. As far as I know from previous coverage reports, there is a certainly significant number of memory-related functions that have not been covered. 
