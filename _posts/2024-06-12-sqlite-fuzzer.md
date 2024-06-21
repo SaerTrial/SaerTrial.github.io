@@ -82,13 +82,20 @@ Here, it can be seen in a way that all of database names come from a pre-define 
 
 ### Arranging various fuzzing stages (statefulness)
 
-Until now, the fuzzer seems working out, generating valid inputs with the help of applied constraints. However, database is quite a complex software program that maintains a lot of states while running. If we strive for much higher branch coverage, guiding sqlite3 into a crafted context is a good approach to meet an increase. In other words, we need to prepare sqlite being in a state we expect by feeding different types of input in an order. For my implementation, all commands are divided into four categories - create, insert, query and misc. For example, create_database and create_table are in a creation category.
+Until now, the fuzzer seems working out, generating valid inputs with the help of applied constraints. However, database is quite a complex software program that maintains a lot of states while running. If we strive for much higher branch coverage, guiding sqlite3 into a crafted context is a good approach to meet an increase. In other words, we need to prepare sqlite being in a state we expect by feeding different types of input in an order. For my implementation, all commands are divided into four stages, e.g., init state involves creation of table, trigger, view, index, cte, virtual table, and json stmt. 
 
-A round of fuzz testing finally manifest as:
-1. create (10000 inputs)
-2. insert (10000～30000 inputs)
-3. query (30000～70000 inputs)
-4. misc (70000～)
+
+First three rounds of fuzz testing manifest as:
+1. init (0~3000 inputs)
+2. busy (3000~8000 inputs)
+3. post (8000~10000 inputs)
+
+Then the preceeding two rounds of testing are shown as below:
+1. bruteforce (0~3000 inputs)
+2. misc (3000~10000 inputs)
+
+Furthermore, after five rounds, this process starts over.
+
 
 Thanks to such a structure of input generation, we could more or less retain statefulness, considering dependency between those commands. Similarly, fuzzing network protocols also requires stateful input organization, leading to our desire states for testing from the starting point.
 
