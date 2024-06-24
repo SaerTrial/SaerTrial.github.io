@@ -33,7 +33,7 @@ There are a few steps to follow:
 - Rewrite the original text on your own and make some changes in the following:
   - Synonyms: make sure you retain the same meaning when it comes to cohesive devices
   - Order in words: old information comes out before the new one. Put the most important one always at the end.
-  - Grammar: change verb to noun, active to passive
+  - Parts of speech: change verb to noun, active to passive
 - Make sure your paraphrasing fits the author's attitude, which will be discussed in the preceeding section because of its importance.
 
 ## Linkers
