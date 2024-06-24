@@ -6,7 +6,7 @@ categories:
 
 This post introduces paraphrasing, in terms of its definition, why and how.
 
-# What is paraphrasing
+## What is paraphrasing
 
 Paraphrasing is a way of presenting a text, keeping the same meaning, but using different words and phrasing. A paraphrase may result in a longer, rather than shorter, version of the original text.
 
