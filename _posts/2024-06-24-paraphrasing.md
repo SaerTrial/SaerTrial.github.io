@@ -4,6 +4,7 @@ categories:
 - academic writing
 ---
 
+This post introduces paraphrasing, in terms of its definition, why and how.
 
 # What is paraphrasing
 
