@@ -20,8 +20,8 @@ Paraphrase short sections of work only; a sentence of two or a short paragraph.
 
 - As an alternative to a direct quotation
 - To rewrite someone else's ideas without changing the meaning (I just mention in the previous section)
-- To express someone else's ideas in your own words.
-- To support claims in, or provide evidence for, your writing.
+- To express someone else's ideas in your own words
+- To support claims in, or provide evidence for, your writing
 
 
 ## How to paraphrase
@@ -76,6 +76,6 @@ Let us analyze one by one:
 # Takeway
 
 While paraphrasing, keep in mind:
-- positions of linkers matter so much
+- positions of linkers matter so much. The head position impacts the whole sentence; the middle one is more specific to certain contents; the tail position is either specific or global
 - do not alter the author's attitude
 - make sure correct use of a linker
