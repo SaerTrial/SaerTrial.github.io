@@ -48,30 +48,17 @@ There are a few exercises to identify the meaning relationship by the type of co
 5. Consequently in a sense one may speak of the Common Law as unwritten law in contrast with Statute Law, which is written law.  
 
 Let us analyze one by one:
-1. "on the other hand" is the contrastive word. The main point to put it at such a position is to emphasize some invertebrates having a spiral pattern. If we put "on the other hand" at the end, the emphasis will come over to "a spiral pattern.
+1. "on the other hand" is the contrastive word. The main point to put it at such a position is to emphasize some invertebrates having a spiral pattern. If we put "on the other hand" at the end, the emphasis will come over to "a spiral pattern. Other contrastive words include: in contrary to, however, but, unlike, by contrast
+2. "Similarly" is one of comparative words. The position where it gets placed at is the head of sentence, so it affects the whole sentence here. Other comparative words consist of: likewise, more or less the same way
 
-    Other contrastive words include 
-    - in contrary to, however, but, unlike, by contrast
-
-2. "Similarly" is one of comparative words. The position where it gets placed at is the head of sentence, so it affects the whole sentence here. 
-
-    Other comparative words consist of
-    - likewise
-    - more or less the same way
-
-3. "Besides" is the additive word. This word takes an effect on "empiricism", meaning that it is not just a theory but a methodology. If we consider paraphrasing this sentence, it would be better to pick up another additive word to retain +ing form.
-
-    Other additive words include:
+3. "Besides" is the additive word. This word takes an effect on "empiricism", meaning that it is not just a theory but a methodology. If we consider paraphrasing this sentence, it would be better to pick up another additive word to retain +ing form. Other additive words include:
     - apart from (good one in this case, because apart from verb+ing), in addition to, except, not only but also, other than, while, etc. Using "while" is fine here but you need to add more things to clarity this is not the contrastive use.
     - There are differences between furthermore and moreover. "furthermore" indicates adding a new point while "moreover" adds detail for the same point.
     - Notably, beside + comma is informal, because the meaning presented is not strong. The better use is to beside + statement.
   
 4. "As opposed to this" stress on the previous sentence.
 
-5. "Consequently" is the causal word. It affect the whole sentence.
-
-    Other causal cases are composed of:
-    - as a result, accordingly, hence, therefore, thus, so, resulting from … is …,  on this basis, because (of)..
+5. "Consequently" is the causal word. It affect the whole sentence. Other causal cases are composed of: as a result, accordingly, hence, therefore, thus, so, resulting from … is …,  on this basis, because (of)..
 
 # Takeaway
 
