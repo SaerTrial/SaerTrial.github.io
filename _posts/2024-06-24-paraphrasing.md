@@ -73,7 +73,7 @@ Let us analyze one by one:
     Other causal cases are composed of:
     - as a result, accordingly, hence, therefore, thus, so, resulting from … is …,  on this basis, because (of)..
 
-# Takeway
+# Takeaway
 
 While paraphrasing, keep in mind:
 - positions of linkers matter so much. The head position impacts the whole sentence; the middle one is more specific to certain contents; the tail position is either specific or global
