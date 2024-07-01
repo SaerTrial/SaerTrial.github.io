@@ -81,6 +81,8 @@ Change the grammar of following text, and I provide my answers sandwitched by pa
 - combine sentences 
   - Tropical forests are defined here as evergreen or partly evergreen forests. They grow in areas receiving not less than 100 mm of precipitation in any month for two out of three years. The mean annual temperature is 24-plus degrees Celsius. The area is essentially frost-free. (Tropical forests are defined here as evergreen or partly evergreen forests, which grow in the essentially frost-free areas receiving not less than 100 mm of precipitation in any month for two out of three years with the mean annual temperature of 24-plus degrees Celsius.)
   - The third National Government followed upon the resignation of the Liberal ministers and of the free trader, Snowden. This happened in September 1932. After this it became little more than a Conservative government. A few ex-Labour and Liberal politicians were added. They all owed their seats to an electoral pact with the Conservatives. (The third National Government followed upon the resignation of the Liberal ministers and of the free trader, Snowden in September 1932, after which it became little more than a Conservative government such that a few ex-Labour and Liberal politicians were added and all owed their seats to an electoral pact with the Conservatives)
+
+
 # Takeaway
 
 While paraphrasing, keep in mind:
