@@ -6,15 +6,15 @@ categories:
 
 This post introduces paraphrasing, in terms of its definition, why and how.
 
-## What is paraphrasing
+# What is paraphrasing
 
 Paraphrasing is a way of presenting a text, keeping the same meaning, but using different words and phrasing. A paraphrase may result in a longer, rather than shorter, version of the original text.
 
-## Why paraphrasing?
+# Why paraphrasing?
 
 Paraphrasing is a useful skill for making notes from readings, note-taking in lectures, and explaining information in tables, charts and diagrams. Moreover, when writing an academic paper and referring to another paper, paraphrasing its main idea is necessary to avoid plagiarism. 
 
-## When to paraphrase
+# When to paraphrase
 
 Paraphrase short sections of work only; a sentence of two or a short paragraph.
 
@@ -24,7 +24,7 @@ Paraphrase short sections of work only; a sentence of two or a short paragraph.
 - To support claims in, or provide evidence for, your writing
 
 
-## How to paraphrase
+# How to paraphrase
 
 There are a few steps to follow:
 - Understand the idea
@@ -36,7 +36,7 @@ There are a few steps to follow:
   - Parts of speech: change verb to noun, active to passive
 - Make sure your paraphrasing fits the author's attitude, which will be discussed in the preceeding section because of its importance.
 
-## Linkers
+# Linkers
 
 Linkers bridge the logic of each part between clauses, and sentences. Changing the positions of linkers may affect the original meaning and authors' attutudes. Hence, it is cautious to weigh up their positions while paraphrasing.
 
