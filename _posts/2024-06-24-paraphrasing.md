@@ -60,6 +60,27 @@ Let us analyze one by one:
 
 5. "Consequently" is the causal word. It affect the whole sentence. Other causal cases are composed of: as a result, accordingly, hence, therefore, thus, so, resulting from … is …,  on this basis, because (of)..
 
+
+# Exercise
+Change the grammar of following text, and I provide my answers sandwitched by parentheses:
+- change nouns to verbs
+  - This rewriting of history was not so much a matter of a new start. (This rewriting of history rarely related to a new start)
+  - Here he lives with the labourers in one of the barrack rooms, and out of his small earnings makes a start at having a house built. (Here he lives with the labourers in one of the barrack rooms, and earns the small amount of money to start the building of a house.)
+- change verbs to nouns 
+  - The Normans invaded in 1066. (The Norman implemented an invasion in 1066)
+  - The bomb exploded and caused many casualties. (There were many casualties caused by the exploded bomb)
+- change adverbs to adjectives 
+  - He wrote frequently. (He wrote in a frequent manner)
+  - Politically, it was a bad decision. (The political decision was bad)
+- change active verbs to passive 
+  - We can relate a study of this kind to texts in other media too. (A study of this kind cannot be related by us to texts in other media too)
+  - In this treatment the teacher can use a variety of techniques to elicit the language learners already know. (In this treatment, a variety of techniques to elicit the language already figured by learners can be used by the teacher)
+- break up sentences 
+  - Given the extent to which deforestation increased markedly in the four southern states during 1987 and 1988, it is heartening news that during the early part of the 1989 dry season the burning seemed to have been curtailed somewhat, due to a combination of policy changes, better controls on burning, and most important of all an exceptionally wet "dry" season. (Given the extent to which deforestation increased markedly in the four southern states during 1987 and 1988, there is heartening news. During the early part of the 1989 dry season, the burning seemed to have been curtailed somewhat, due to a combination of policy changes, better controls on burning, and most important of all an exceptionally wet "dry" season.)
+  - In 1851 the average family size was 4.7, roughly the same as it had been in the seventeenth century, but the 1½ million couples who married during the 1860s, which the historian G. M. Young described as the best decade in English history to have been brought up in, raised the figure to 6.2. (In 1851 the average family size was 4.7, roughly the same as it had been in the seventeenth century, but the 1½ million couples who married during the 1860s. The historian G. M. Young described the period of time as the best decade in English history to have been brought up in, raised the figure to 6.2.)
+- combine sentences 
+  - Tropical forests are defined here as evergreen or partly evergreen forests. They grow in areas receiving not less than 100 mm of precipitation in any month for two out of three years. The mean annual temperature is 24-plus degrees Celsius. The area is essentially frost-free. (Tropical forests are defined here as evergreen or partly evergreen forests, which grow in the essentially frost-free areas receiving not less than 100 mm of precipitation in any month for two out of three years with the mean annual temperature of 24-plus degrees Celsius.)
+  - The third National Government followed upon the resignation of the Liberal ministers and of the free trader, Snowden. This happened in September 1932. After this it became little more than a Conservative government. A few ex-Labour and Liberal politicians were added. They all owed their seats to an electoral pact with the Conservatives. (The third National Government followed upon the resignation of the Liberal ministers and of the free trader, Snowden in September 1932, after which it became little more than a Conservative government such that a few ex-Labour and Liberal politicians were added and all owed their seats to an electoral pact with the Conservatives)
 # Takeaway
 
 While paraphrasing, keep in mind:
