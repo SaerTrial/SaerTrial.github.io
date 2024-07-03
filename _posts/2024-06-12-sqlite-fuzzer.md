@@ -1,5 +1,5 @@
 ---
-title: A funny project to fuzz sqlite3
+title: A grammar-based fuzzer for sqlite3
 categories:
 - fuzzing
 - database
