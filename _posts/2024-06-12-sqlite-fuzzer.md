@@ -1,5 +1,5 @@
 ---
-title: Detailing my implementation and approach to fuzz sqlite3
+title: A funny project to fuzz sqlite3
 categories:
 - fuzzing
 - database
