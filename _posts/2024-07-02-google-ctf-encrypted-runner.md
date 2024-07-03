@@ -132,7 +132,7 @@ Output: ls: cannot access ''$'\017''['$'\034\203'':Q'$'\031''z'$'\a\035\252\370\
 ```
 
 Is the original data `ȅȅȅȅȅȅȅȅȅȅȅȅȅ` here? No, it could be seen in a way that decrypted data here is not the same because of misimplementation. Instead, the content right after `cannot access` is the original data. Hence, we could make use of this information to leak the AES key according to the previous formula. 
-Here, I refer to the official solution released by Google team:
+Here, I refer to the [official solution](https://github.com/google/google-ctf/blob/main/2024/quals/pwn-encrypted-runner/challenge/solve.py) released by Google team:
 ```Python
 # we do not know the first three bytes because they are not zeros during SubByte stage of AES encryption.
 key = [0, 0, 0] + [0x52 ^ o for o in out]
