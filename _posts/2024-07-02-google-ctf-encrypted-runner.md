@@ -6,7 +6,7 @@ categories:
 - crypto
 ---
 
-This challenge is really cool, which I did not actually solve during this year's GoogleCTF. Furthermore, this is my first participation for international CTF events and I enjoyed a lot ("struggling all the way through" lol). Due to the official write-up that has been published after the contest finished, this post merely adds more detail and demonstrates how I tried to approach ("fail") towards a solution.
+This challenge is really cool, which I did not actually solve during this year's GoogleCTF. Furthermore, this is my first participation for international CTF events and I enjoyed a lot ("struggling all the way through" lol). Due to the official write-up that has been published after the contest finished, this post merely adds more detail and demonstrates how I tried to approach ("fail") towards a solution. The [attachment]({{ site.baseurl }}/assets/binary/2024-07-02-google-ctf-encrypted-runner/attachment.zip) could be downloaded here.
 
 
 ## Confusion and blockers
