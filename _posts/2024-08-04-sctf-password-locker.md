@@ -30,9 +30,7 @@ According to cortex-m convention, there are stack address and the reset handler 
 In order to better understand how peripherals are setup in the firmeware logic, we use svd-loder in ghidra scripts to automatically create MMIO ranges for all peripherals. Download a svd file of this MCU at the [link](https://github.com/fduignan/stm32f103c8t6/blob/master/STM32F103.svd). Search the script `svd-loder`. Once this script had been executed, it is fairly easy to identify `Uart_Send`. Moreover, the firmware sends `SCTF{` before diving into an infinite loop.
 
 ```c
-
 void main(void)
-
 {
   undefined *puVar1;
   undefined *peripheral;
@@ -80,7 +78,6 @@ void main(void)
                     /* WARNING: Do nothing block with infinite loop */
   } while( true );
 }
-
 ```
 
 ### Peripheral configuration
