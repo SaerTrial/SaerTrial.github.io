@@ -329,6 +329,18 @@ Notably, we need to reset password checking state each time we test one case, be
 
 Of course, this input generatation is very ineffective since we gain no feedback on which test case will progress this password checking, or reach more meaningful basic blocks. The chance of hitting all digits is only 1 out of 16384, which is fine for software-based fuzzing but a definitely nightmare.
 
+### Hardware setup
+
+The first picture indicates a testing of generated signals from hydrabus using logic analyzer
+
+![Image alt]({{ site.baseurl }}/assets/image/2024-08-04-sctf-password-locker/testing-hydrabus.jpg
+ "make sure that hydrabus outputs expected falling edges").
+
+
+In the second picture, four pins of hydrabus are connected to blue pill, while logic analyzer connects one wire to blue pill to monitor any output from UART-TX.
+
+![Image alt]({{ site.baseurl }}/assets/image/2024-08-04-sctf-password-locker/fuzzing-with-hydrabus.jpg
+ "ready to perform fuzz testing on blue pill with hydrabus and logic analyzer").
 
 
 ### TODO: improvement on input generation.
