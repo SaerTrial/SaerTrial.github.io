@@ -113,7 +113,7 @@ The interrupt vector table indicates where they are:
 ```
 This setup is really crucial since it specifies falling trigger mode to be enabled. This means that we need to create a falling edge to trigger those interrupts.
 
-![Image alt]({{ site.baseurl }}/assets/pic/2024-08-04-sctf-password-locker/falling-trigger-mode.png "falling trigger mode").
+![Image alt]({{ site.baseurl }}/assets/image/2024-08-04-sctf-password-locker/falling-trigger-mode.png "falling trigger mode").
 
 
 Those interrupt handlers will check if a user pushes bottons in a correct order. If so, flag2 will be sent to UART-TX via DMA. For example, `EXIT2` does data transmission by enabling DMA.
