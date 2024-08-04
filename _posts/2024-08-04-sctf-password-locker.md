@@ -321,6 +321,8 @@ hydrabus.write(b'\x00')
 hydrabus.write(b'\x0F\n')
 ```
 
+Basically, this script sets up hydrabus as a binary mode, that allows us to control it programatically. It then makes four pins to be high before the stage of fuzz testing. Due to the firmware that expects a falling edge from any button push, we need to simulate this behavior in hydrabus as well. Hence, `pulse_pin` will generate a falling edge before recoverying back to original voltage.
+
 Notably, we need to reset password checking state each time we test one case, because this firmware internally measure checking by a counter. We need to force this counter as 0 for each test case.
 
 Of course, this input generatation is very ineffective since we gain no feedback on which test case will progress this password checking, or reach more meaningful basic blocks. The chance of hitting all digits is only 1 out of 16384, which is fine for software-based fuzzing but a definitely nightmare.
