@@ -7,7 +7,7 @@ categories:
 - ctf
 ---
 
-You could find more inforamtion about this challenge in this [link](https://ctftime.org/task/12253). I am going to propose three different approaches to solve this challenge, and those approaches range from hardware to emulation, instead of just static analysis.
+You could find more inforamtion about this challenge at this [link](https://ctftime.org/task/12253). I am going to propose three different approaches to solve this challenge, and those approaches range from hardware to emulation, instead of just static analysis.
 
 
 ## About this challenge
