@@ -23,7 +23,7 @@ Tips: interrupt vector table, datasheet, jtag allowed, dynamically debuggable, t
 
 ## Firmware reversing
 
-According to cortex-m convention, there are stack address and the reset handler at the first eight bytes. Following through reset handler, we finally identify main function inhabiting at 0x08000428. Beware that 0x8000000 is base address for code section. Another intuition to support this identification is a super loop within this function. Overall, the analyzed ghidra zip file is [here]({{ site.baseurl }}/assets/binary/2024-08-4-sctf-password-locker/password-locker.gzf).
+According to cortex-m convention, there are stack address and the reset handler at the first eight bytes. Following through reset handler, we finally identify main function inhabiting at 0x08000428. Beware that 0x8000000 is base address for code section. Another intuition to support this identification is a super loop within this function. Overall, the analyzed ghidra zip file is [here]({{ site.baseurl }}/assets/binary/2024-08-04-sctf-password-locker/password-locker.gzf).
 
 ### SVD
 
@@ -95,7 +95,7 @@ Let us research into operation mode first:
 According to datasheet, this address sets up output data registers to activate some of pins in output mode. This case configures PA1 to PA4. 
 
 ```c
-*(undefined4 *)(PTR_EXTI_080005a4 + 0xc) = 0b00011110;
+*(undefined4 *)PTR_EXTI_080005a4 = 0b00011110;
 ```
 This enables external interrupts for four pins mentioned above, which means that the program will jump to a corresponding routine once any of those bottons is pushed.
 
@@ -106,6 +106,15 @@ The interrupt vector table indicates where they are:
         08000064 e5 01 00 08     addr       EXIT3+1
         08000068 2d 02 00 08     addr       EXIT4+1
 ```
+
+
+```c
+*(undefined4 *)(PTR_EXTI_080005a4 + 0xc) = 0b00011110;
+```
+This setup is really crucial since it specifies falling trigger mode to be enabled. This means that we need to create a falling edge to trigger those interrupts.
+
+![Image alt]({{ site.baseurl }}/assets/pic/2024-08-04-sctf-password-locker/falling-trigger-mode.png"falling trigger mode").
+
 
 Those interrupt handlers will check if a user pushes bottons in a correct order. If so, flag2 will be sent to UART-TX via DMA. For example, `EXIT2` does data transmission by enabling DMA.
 ```c
@@ -160,7 +169,7 @@ Hence, we could naturally listen on PA9 for the second flag after the device fin
 
 So, I patched those silly code snippets that sort of leak password in order to have more fun ;)
 
-The other two approaches are propsed upon the [patch version]({{ site.baseurl }}/assets/binary/2024-08-4-sctf-password-locker/patched_firmware.bin).
+The other two approaches are propsed upon the [patch version]({{ site.baseurl }}/assets/binary/2024-08-04-sctf-password-locker/patched_firmware.bin).
 
 
 
@@ -174,3 +183,6 @@ When it comes to this challenge, I leverage hydrabus to write down a script to a
 For convenience (I am too lazy or mentally tired to type so many words), I directly demonstrate my hydrabus script:
 ```python
 ```
+
+
+Once the hydrabus connects its four pins to PA1-4 in the blue pill, I run this script to generate 
