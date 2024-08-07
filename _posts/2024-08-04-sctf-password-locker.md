@@ -436,12 +436,8 @@ def pulse_pin(pin):
 
 
 PA = {"PA1": 0, "PA2": 1, "PA3": 2, "PA4": 3}
-PULLUP = 1
-PULLD0WN = 0
-
 
 time.sleep(5)
-
 
 cmd = input("please provide a command: ")
 if cmd != "continue":
@@ -449,7 +445,6 @@ if cmd != "continue":
 	hydrabus.write(b'\x00')
 	hydrabus.write(b'\x0F\n')
 	quit()
-
 
 openocd_cfg = abspath("./stlink-stm32f1x.cfg")
 
