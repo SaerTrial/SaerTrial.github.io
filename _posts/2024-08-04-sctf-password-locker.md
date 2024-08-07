@@ -696,7 +696,7 @@ Note that the reason why I set up a breakpoint at 0x8000590 is that the program 
 t_h_a_t_1_s_______r_1_g_h_t_f_l_a_g_
 ```
 
-Even though some decoded parts of flag2 are not complete, we at least gain more knowledge with this approach. Since those characters in memory will be printed out to UART-TX buffer via DMA, the final form of flag2 will consist of quite a few spaces that have not been demonstrated in the above decoded string.
+Even though flag2 is not complete, we at least gain more knowledge with this approach. Since printing out flag2 replies on DMA, fuzzware hasn't supported this feature yet. Nonetheless, it saves a lot of effort, and we could easily recovery the whole flag2.
 
 The analyzed fuzzware zip is attached [here]({{ site.baseurl }}/assets/binary/2024-08-04-sctf-password-locker/STM32F103.zip).
 
