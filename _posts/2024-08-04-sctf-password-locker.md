@@ -342,7 +342,7 @@ In the second picture, four pins of hydrabus are connected to blue pill, while l
 
 ### Feedback-driven hardware fuzzing by avatar2 + hydrabus
 
-The key idea is to get access to the value at 0x2000003c, in order to identify whether the currently pressed button is the right one. Avatar2 offers a full control over openocd and we could incorporate this feature into the previous script. 
+The key idea is to get access to the value at 0x2000003c, in order to identify whether the currently pressed button is the right one. In this case, I use Avatar2 that offers a full control over openocd, and this feature could seamlessly be incorporated into the previous script. 
 
 To enable a connection between the blue pill and openocd, we need to provide a configuration file for openocd. According to most online tutorials, people usually connect st-link to their devices, then establish connection via openocd by providing two configuration files, including one for st-link and another for the blue pill. However, avatar2 only accepts one argument to specify a configuration file. Hence, I educativelly consolidated two files as the whole one and it worked well. Note that the content of the st-link configuration file should always be placed at the beginning, otherwise, PC can't identify st-link for further connection.
 
