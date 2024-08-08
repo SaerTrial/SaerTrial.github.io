@@ -530,7 +530,7 @@ hydrabus.write(b'\x0F\n')
 ```
 
 ![Image alt]({{ site.baseurl }}/assets/image/2024-08-04-sctf-password-locker/avatar2+hydrabus.png
- "successful bruteforce the password with the help of avatar2").
+ "Bruteforce the password with the help of avatar2 successfully").
 
 
 
