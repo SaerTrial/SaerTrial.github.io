@@ -46,4 +46,40 @@ At the moment when I am writing down here, I look back constant propagation and 
 
 Constant propagation is considered as crucial and takes up three assignments throughout this course. Especially, the previous assignment is a foundation to the later one, which is well-organized. The first one is a simple one, where students implement it against its algorithm in slides; the second one is more complicated and requires students to implement interprocedural constant propagation, where transition of data facts to a method call needs to be considered; the third one is pretty interesting and more practical, where students are asked to deal with instance field access, array access, and static field access using alias analysis, which works out by using pointer analysis results. 
 
+Its application could be compiler optimization, or deal loop detection, etc.
+
+## Pointer Analysis
+
+Pointer analysis is a fundamental analyse. This course asks students to implement 
+context-insensitive model, and context-sensitive one. Both of them utilize a flow-insensitive approach, and this eases difficulty of development and represents a clear application logic. The key of this approach is to assume each part of logic has no idea about how other parts are going on, and needs to deal with all cases. For example, when a method is called, it needs to be added in a call graph and connects edges between arguments and its parameters in pointer flow graph, such that a data fact could flow through at some points.
+
+When it comes to context sensitivity, there are three approaches to maintain a context, including callsite, object creation, and type (caller class). The most attractive comparison appears between type and object approaches. Type stands out in terms of performance and effectiveness, it has less call graph edges than object approaches though. More call graph edges are found, more precise this analyse is. Precision has a profound impact on analyses built in pointer analysis, such as alias analysis and tain analysis.
+
+## Taint analysis
+
+Taint analysis shares similar ideas of pointer analysis. That is to say that tainted objects are liquid and flow through pointer flow graph. Additionally, we need to configure source functions, sink functions, and taint transfer in a configuration file. whenever a source function is invoked, a taint object will be created and added into a corresponding var or a field. Taint transfer is better dealt with whenever a new object propagates and a method is called.
+
+## Abstract Interpretation
+
+This concept is not intruduced throughout this course, while I intentionally like to complete the learning of static program analysis thoroughly and turn to look into abstract interpretation in other materials. 
+
+Basically, abstract interpretation aims at removing reduntdant elements of a newly designed analyse relative in the choice of lattice. There are abstract and concrete domains, both of which are complete lattices. abtraction refers to a transition from the a concrete domain to abstract one by a function called abstraction functions, and the flip side is called concretization functions. It is a moment to introduce `Galois` connection, which holds when these two types of function are monotone and two properties are satisfied:
+
+![Image alt]({{ site.baseurl }}/assets/image/2024-12-14-static-program-analysis/Galois_connection.png
+ "lattice preview of constant propagation").
+
+Essentially, the first property related to "extensive" over-approximates a concretization transition over an element in an abstract domain, 
+which results in a concretized element dominating an original element that has been abstracted in the partial order. 
+In a bigger picture, this property compensates missed-out elements accoring to the abstract sementics. 
+When it comes to the second property, that gives the most precise possible abstract 
+description description for any element in the semantic lattice, which is precise than its starting element during this transition.
+
+![Image alt]({{ site.baseurl }}/assets/image/2024-12-14-static-program-analysis/Galois_two_properties.png
+ "two properties of Galois connection in the form of diagram").
+
+Regarding the top diagram in the figure, the finally concretized element is higher than `l`, and dominates in the partial order, indicating an extension in lattice. For the bottom one, `m` dominates the final element, meaning that a reduction is applied in the lattice and the below element is more precise. Essentially, a concrete domain has infinite objects, some of which represent a program property, and what abstract interpretation does is to look for a upper bound that includes those objects and sees the same property, such that we could prove from the point. Otherwise, the only way to prove this property is to enumerate those infinite objects, which is impossible.
+
+
+
+
 
