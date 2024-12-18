@@ -80,6 +80,12 @@ description description for any element in the semantic lattice, which is precis
 Regarding the top diagram in the figure, the finally concretized element is higher than `l`, and dominates in the partial order, indicating an extension in lattice. For the bottom one, `m` dominates the final element, meaning that a reduction is applied in the lattice and the below element is more precise. Essentially, a concrete domain has infinite objects, some of which represent a program property, and what abstract interpretation does is to look for a upper bound that includes those objects and sees the same property, such that we could prove from the point. Otherwise, the only way to prove this property is to enumerate those infinite objects, which is impossible.
 
 
+## Static vs Dynamic Analysis
+
+Static analysis that follows over approximation will not miss any bugs but may generate false positives (in such a case, we need to adjust abstraction). In contrast, dynamic analysis facilitates under approximation and picks a piece of execution path to be analyzed. Its advantages mainfest in not generating false positives, but missing out on some bugs. Hence, those two approaches are complementary.
+
+My research interests lie at firmware re-hosting and program testing. Basically, emulation is an over-approximation approach to running the target program with all possible states. Hardware-in-the-loop is another approach without considerations on hardware dependency. Firmware binary runs on its own MCU, and analysts get access to its execution states via debugging interfaces, such as JTAG. Then they aggregate those information to analyze where potential bugs or vulnerabilities may appear. 
 
 
+Frankly, I personally have a strong preference to static analysis mainly because dynamic analysis introduces uncertainties due to its under approximation. Thus, many cutting edge research work based on this approach intentionally claims their practicality and usability for industries. It sounds reasonable to apply this approach epsecially when no new theories are found in program analysis. An attempt to combine both of them is a good practice as well. 
 
