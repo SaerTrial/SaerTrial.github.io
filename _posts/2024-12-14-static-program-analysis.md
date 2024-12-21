@@ -18,7 +18,7 @@ A lattice has greatest and lowest fixed points. Why does must analysis eventuall
  "overview of must and may analysis").
 
 
-This question actually comes down to propagation direction, where must analysis kicks off from the greatest element of its partial set, and vice versus. Ant analysis flows unsafe facts towards safe facts. A further question is how to identify if the greatest/lowest element holds safe or unsafe facts? I had no idea early but later realize that truthiness is a principal for judgement. When it comes to must analysis, its greatest element represents the meaning that all () must (), and the lowest one shows that none () must (). The content in brackets depends on a question that the analysis answers. From a truthiness perspective, we could kind of feel that the meaning of the greatest element is unsafe because there may be false positives, while that of the lowest one is too safe because many positive facts are excluded and a few of them are left. In order words, the judgement behind "none () must ()" is safe without including any wrong results, but useless. So, we do not want to see our analysis reach there. This also reflects on why we only focus on the greatest fixed point for must analysis even though there are other fixed points available as well.
+This question actually comes down to propagation direction, where must analysis kicks off from the greatest element of its partial set, and vice versa. Ant analysis flows unsafe facts towards safe facts. A further question is how to identify if the greatest/lowest element holds safe or unsafe facts? I had no idea early but later realize that truthiness is a principal for judgement. When it comes to must analysis, its greatest element represents the meaning that all () must (), and the lowest one shows that none () must (). The content in brackets depends on a question that the analysis answers. From a truthiness perspective, we could kind of feel that the meaning of the greatest element is unsafe because there may be false positives, while that of the lowest one is too safe because many positive facts are excluded and a few of them are left. In order words, the judgement behind "none () must ()" is safe without including any wrong results, but useless. So, we do not want to see our analysis reach there. This also reflects on why we only focus on the greatest fixed point for must analysis even though there are other fixed points available as well.
 
 Once we know which element is utilized as a starting point, the kind of the fixed is understood according to fixed-point theorem. If we apply a transfer function to the greatest point, then the fixed point corresponds to be greatest. Furthermore, regarding must analysis, its operator in lattice is meet (intersection), indicating that only true facts are left through propagation, thus the greatest fixed point is the lower bound.
 
@@ -35,6 +35,20 @@ Basically, when a meet operation is implemented on two elements, data facts of t
 
 ![Image alt]({{ site.baseurl }}/assets/image/2024-12-14-static-program-analysis/upper_lower_bound.png
  "a good figure for understanding upper and lower bounds").
+
+## Choice: Forward or Backward Analysis?
+
+Since implementing one assignment about dead code detection, which utilizes live variable analysis and constant propagation, I have sort of figured out the essence of forward and backward analysis. Basically, when we need only one analyse, there is no hard rule in such a choice. 
+
+Live variable analysis is a backward analyse aggregating information from an exit point, while constant propagation is a forward analyse, gaining information from a program's entry. That is to say, whenever we pick up a statement and inspect its IN and OUT fact sets, we could have access to results of those two analyses from two opposite directions. Information from both directions will meet each other along the way and come into play in a situation where we aim at finding a variable definition assigned with a constant which will be used later. For example, with a code snippet as shown below,  
+```
+int x = 1;
+... // any statement without effect on the variable "x"
+foo(x);
+```
+
+finding such a variable will become more cubersome if we implement both analyses in the same direction - forward or backward, then information about `foo(x)` cannot be passed back to previous definition statements for analysis. 
+
 
 
 ## Constant Propagation
@@ -89,3 +103,4 @@ My research interests lie at firmware re-hosting and program testing. Basically,
 
 Frankly, I personally have a strong preference to static analysis mainly because dynamic analysis introduces uncertainties due to its under approximation. Thus, many cutting edge research work based on this approach intentionally claims their practicality and usability for industries. It sounds reasonable to apply this approach epsecially when no new theories are found in program analysis. An attempt to combine both of them is a good practice as well. 
 
+## Symbolic and Concolic Execution
