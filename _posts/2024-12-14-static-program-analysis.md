@@ -47,7 +47,7 @@ int x = 1;
 foo(x);
 ```
 
-finding such a variable will become more cubersome if we implement both analyses in the same direction - forward or backward, then information about `foo(x)` cannot be passed back to previous definition statements for analysis. 
+finding such a variable will become more cumbersome if we implement both analyses in the same direction - forward or backward, then information about `foo(x)` cannot be passed back to previous definition statements for analysis. 
 
 ![Image alt]({{ site.baseurl }}/assets/image/2024-12-14-static-program-analysis/forward_backward_analysis.png
  "data flow direction for backward and forward analysis").
@@ -71,7 +71,7 @@ context-insensitive model, and context-sensitive one. Both of them utilize a flo
 
 When it comes to context sensitivity, there are three approaches to maintain a context, including callsite, object creation, and type (caller class). The most attractive comparison appears between type and object approaches. Type stands out in terms of performance and effectiveness, it has less call graph edges than object approaches though. More call graph edges are found, more precise this analyse is. Precision has a profound impact on analyses built in pointer analysis, such as alias analysis and tain analysis.
 
-## Taint analysis
+## Taint Analysis
 
 Taint analysis shares similar ideas of pointer analysis. That is to say that tainted objects are liquid and flow through pointer flow graph. Additionally, we need to configure source functions, sink functions, and taint transfer in a configuration file. whenever a source function is invoked, a taint object will be created and added into a corresponding var or a field. Taint transfer is better dealt with whenever a new object propagates and a method is called.
 
@@ -94,6 +94,8 @@ description description for any element in the semantic lattice, which is precis
  "two properties of Galois connection in the form of diagram").
 
 Regarding the top diagram in the figure, the finally concretized element is higher than `l`, and dominates in the partial order, indicating an extension in lattice. For the bottom one, `m` dominates the final element, meaning that a reduction is applied in the lattice and the below element is more precise. Essentially, a concrete domain has infinite objects, some of which represent a program property, and what abstract interpretation does is to look for a upper bound that includes those objects and sees the same property, such that we could prove from the point. Otherwise, the only way to prove this property is to enumerate those infinite objects, which is impossible.
+
+### Abstract Syntax Tree vs Intermediate Representation
 
 
 ## Static vs Dynamic Analysis
