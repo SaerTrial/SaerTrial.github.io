@@ -47,10 +47,10 @@ int x = 1;
 foo(x);
 ```
 
-finding such a variable will become more cumbersome if we implement both analyses in the same direction - forward or backward, then information about `foo(x)` cannot be passed back to previous definition statements for analysis. 
+Finding such a variable will become more cumbersome if we implement both analyses in the same direction - forward or backward, then information about `foo(x)` cannot be passed back to previous definition statements for analysis. 
 
 ![Image alt]({{ site.baseurl }}/assets/image/2024-12-14-static-program-analysis/forward_backward_analysis.png
- "data flow direction for backward and forward analysis").
+ "data flow direction between backward and forward analysis").
 
 
 ## Constant Propagation
