@@ -97,6 +97,18 @@ Regarding the top diagram in the figure, the finally concretized element is high
 
 ### Abstract Syntax Tree vs Intermediate Representation
 
+I write down AST and IR here, because I feel like those two concepts are internally connected as concrete and abstract domain could be transfered to each other.
+
+First of all, need to introduce both of them. AST is often language dependent and contains grammer structure. It benefits type-checking, but has non-straighforward control flow information to utilize. In contrast, IR contains control flow information, tosses away language features, and represents in low-level machine code. Hence, without language dependency, it is usually considered as the basis for static analysis.
+
+AST is treated as a concrete domain, and carrys details on a specific language, such as how a do-while loop could be represented in AST. 
+
+The abstract syntax tree is flattened as machine code and those language features are lost, leading to a lose in precision, when AST is converted to IR (abstract domain). More interestingly, dealing with IR allows us to design a generalized analyse, which sounds like an abstract operation. Furthermore, IR could be re-compiled back to pesudo code like reverse engineering, which contains more coarse-grained AST information because many temporary variables and mis-interpretation in a language structure could occur, rendering the generated code hardly similar to the original version. What does coarse granularity indicate behind the scene? In essence, re-compilation over-approxiamtes in order to guarantee program correctness, and introduce many in-process variables without losing its original semantics. Moreover, over-approximation may lose precision, but its generated code snippet always includes the semantics of original one which has probably simplified with a certain level of optimization.
+
+
+![Image alt]({{ site.baseurl }}/assets/image/2024-12-14-static-program-analysis/AST_IR.png
+ "AST vs IR").
+
 
 ## Static vs Dynamic Analysis
 
