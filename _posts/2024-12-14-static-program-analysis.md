@@ -55,14 +55,14 @@ Finding such a variable will become more cumbersome if we implement both analyse
 
 ## Constant Propagation
 
-At the moment when I am writing down here, I look back constant propagation and fail in figuring out the meaning of top and bottom elements. Since it belongs to must analysis, as of my understanding, the bottom element should represent that none of variable must hold a constant, which sounds unsafe but is wrong. Is there anything or information I miss out on? So, I review its question - "given a variable x at program point p, determine whether x holds a constant at p?", and then realize that variables need to be defined and initialized before hold a constant. "all vars must hold a constant" could be reduced to a more unsafe level, meaning that all vars are undefined and uninitialized at any program point, and this statement is reflected on the top element. In regards to the bottom one, "none of var must hold a constant" is safe by not counting any wrong judgement in but useless. Therefore, its lattice preview is like a diamond, which indicates that a defined and initialized variable is able to hold a constant.
+At the moment when I am writing down here, I look back constant propagation and fail in figuring out the meaning of top and bottom elements. Since it belongs to must analysis, as of my understanding, the bottom element should represent that none of variable must hold a constant, which sounds unsafe but is wrong. Is there anything or information I miss out on? So, I review its question - "given a variable x at program point p, determine whether x holds a constant at p?", and then realize that variables need to be defined and initialized before hold a constant. "all vars must hold a constant" could be reduced to a more unsafe level, meaning that all vars are undefined and uninitialized at any program point, and this statement is reflected on the top element. In regards to the bottom one, "none of var must hold a constant" is safe by making any wrong judgement according to the asked question but useless. Its data fact set does not contain any wrong variable that does not hold a constant, thus there is no any false positive, which satisfies completeness. Its lattice preview is like a diamond, which indicates that a defined and initialized variable is able to hold a constant.
 
 ![Image alt]({{ site.baseurl }}/assets/image/2024-12-14-static-program-analysis/constant_propagation.png
  "lattice preview of constant propagation").
 
 Constant propagation is considered as crucial and takes up three assignments throughout this course. Especially, the previous assignment is a foundation to the later one, which is well-organized. The first one is a simple one, where students implement it against its algorithm in slides; the second one is more complicated and requires students to implement interprocedural constant propagation, where transition of data facts to a method call needs to be considered; the third one is pretty interesting and more practical, where students are asked to deal with instance field access, array access, and static field access using alias analysis, which works out by using pointer analysis results. 
 
-Its application could be compiler optimization, or deal loop detection, etc.
+Its applications include compiler optimization, and deal loop detection, etc.
 
 ## Pointer Analysis
 
@@ -94,6 +94,23 @@ description description for any element in the semantic lattice, which is precis
  "two properties of Galois connection in the form of diagram").
 
 Regarding the top diagram in the figure, the finally concretized element is higher than `l`, and dominates in the partial order, indicating an extension in lattice. For the bottom one, `m` dominates the final element, meaning that a reduction is applied in the lattice and the below element is more precise. Essentially, a concrete domain has infinite objects, some of which represent a program property, and what abstract interpretation does is to look for a upper bound that includes those objects and sees the same property, such that we could prove from the point. Otherwise, the only way to prove this property is to enumerate those infinite objects, which is impossible.
+
+### Example of An Abstract Domain
+
+I was confused about what an abstract domain really refers to. What is the difference between a concrete and abstract domain? I read through relevant slides and thought that I comprehand it more or less. 
+
+The definition of abstract domain includes:
+* A domain captures properties of interest
+* A partial order that sorts out abstract elements by precision
+* Abstract transfer functions that compute on this domain
+
+Suppose that we apply those definitions in constant propagation, where a variable is classified into one of those properties, including UNDEF, NAC, and Constant. The first one means that a var holds an integer with 10 or whatever in a concrete domain, but an abstract domain does not focus on its exact value but its property, which is Constant in this case; The second one is vague to me, and I do not think that precision is a key in order, but just a relationship between two elements. Precision, speaking of my experience of implementing pointer analysis, is determined by transfer functions, which make a change in a data fact set and push analysis towards a fixed point. Choosing a good fix point could avoid losing false negatives for must analysis. 
+
+I draw a diagaram to represent an abstract domain of constant propagation.
+
+![Image alt]({{ site.baseurl }}/assets/image/2024-12-14-static-program-analysis/abstract_domain_constant_propagation.png
+ "An abstract domain of constant propagation").
+
 
 ### Abstract Syntax Tree vs Intermediate Representation
 
