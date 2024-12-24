@@ -104,7 +104,9 @@ The definition of abstract domain includes:
 * A partial order that sorts out abstract elements by precision
 * Abstract transfer functions that compute on this domain
 
-Suppose that we apply those definitions in constant propagation, where a variable is classified into one of those properties, including UNDEF, NAC, and Constant. The first one means that a var holds an integer with 10 or whatever in a concrete domain, but an abstract domain does not focus on its exact value but its property, which is Constant in this case; The second one is vague to me, and I do not think that precision is a key in order, but just a relationship between two elements. Precision, speaking of my experience of implementing pointer analysis, is determined by transfer functions, which make a change in a data fact set and push analysis towards a fixed point. Choosing a good fix point could avoid losing false negatives for must analysis. 
+Suppose that we apply those definitions in constant propagation, where a variable is classified into one of those properties, including UNDEF, NAC, and Constant. The first one means that a var holds an integer with 10 or whatever in a concrete domain, but an abstract domain does not focus on its exact value but its property, which is Constant in this case; The second one is vague to me, and I do not think that precision is a key in order, but just a relationship between two elements. Precision, speaking of my experience of implementing pointer analysis, is determined by transfer functions, which make a change in a data fact set and push analysis towards a fixed point. Choosing a good fixed point could avoid losing false negatives for must analysis. 
+
+Furthermore, looking for a correct transfer function is hard, and finding the precise one that helps reach out to a good fixed point is even harder. So, those two challenges remain in abstract interpretation.
 
 I draw a diagram to represent an abstract domain of constant propagation.
 
