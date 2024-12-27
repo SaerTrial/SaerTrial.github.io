@@ -70,7 +70,7 @@ Thus, a problem to identify the exit point of a switch or if statement comes dow
 Like the next section **Abstract Syntax Tree vs Intermediate Representation** talking about AST and IR, converting IR back to AST may lose precision in syntax, especially for nested cases. 
 Hence, the most complicated situation is that an if and switch statement is mutually nested, making it pretty hard to measure their scope and to peal one off another; 
 moreover, flow-insensitive processing is global and out of order, that we have no idea about whether an if statement is nested in others, and whether this statement has already been deal with. 
-All those problems contribute a high level of difficulty for a flow-insensitive implementation.
+All those problems contribute a high level of difficulty for a flow-insensitive implementation, thus I may prefer to a flow-sensitive solution that has an advantage of tackling those nested situations.
 
 
 
