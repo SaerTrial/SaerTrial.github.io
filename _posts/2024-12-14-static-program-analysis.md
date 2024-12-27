@@ -62,7 +62,7 @@ Although the hidden test cases in the online judgement system do not reach to th
 For example, having a if statement, we are required to combine constant propagation results to identify which branch will not be ever taken. 
 This is all this assignment about, while I am too foolish to consider nested if statements, or a nest of if or switch statements. 
 Thus, a problem to identify the exit point of a switch or if statement comes down to resolving intermediate representation, that requires a lot of considerations on nodes and their in edges to match an exit point to a corresponding statement. 
-Like the [section](IR) talking about AST and IR, converting IR back to AST may lose precision in syntax, especially for nested cases. 
+Like the next section **Abstract Syntax Tree vs Intermediate Representation** talking about AST and IR, converting IR back to AST may lose precision in syntax, especially for nested cases. 
 Hence, the most complicated situation is that an if and switch statement is mutually nested, making it pretty hard to measure their scope and to peal one off another; 
 moreover, flow-insensitive processing is global and out of order, that we have no idea about whether an if statement is nested in others, and whether this statement has already been deal with. 
 All those problems contribute a high level of difficulty for a flow-insensitive implementation.
@@ -132,7 +132,7 @@ I draw a diagram to represent an abstract domain of constant propagation.
  "An abstract domain of constant propagation").
 
 
-[IR](### Abstract Syntax Tree vs Intermediate Representation)
+### Abstract Syntax Tree vs Intermediate Representation
 
 I write down AST and IR here, because I feel like those two concepts are internally connected as concrete and abstract domain could be transfered to each other.
 
