@@ -10,6 +10,11 @@ Regardless of potential disagreements, I find it truly challenging to comprehand
 
 The link of this course is [here](https://tai-e.pascal-lab.net/en/lectures.html). I have uploaded my solutions of all assignments, including constant propagation and pointer analysis. They are stored in a [git repo](https://github.com/SaerTrial/static-program-analysis-assignment). All assignments have passed online judgement and earned full scores.
 
+
+![Image alt]({{ site.baseurl }}/assets/image/2024-12-14-static-program-analysis/OJ.png
+ "all assignments have passed").
+
+
 ## Must and May Analysis
 
 A lattice has greatest and lowest fixed points. Why does must analysis eventually reach to the greatest fixed point and may analysis get to the lowest one?
