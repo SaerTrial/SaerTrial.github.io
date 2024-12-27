@@ -8,7 +8,7 @@ Back in the day, I was always confused about how a "professional" analysis looks
 
 Regardless of potential disagreements, I find it truly challenging to comprehand a whole program through those approaches, and struggle to effectively detect a vulnerability or bug based on acquired information. For instance, pesudo code derived from reverse engineering tools, such as ghidra and IDA, could be pretty messy and baffling, meaning that a high level of compiler optimization or obfuscation prevents pesudo code from being human-readable; moreover, resolving a function and its parameters is tedious without a symbol table, which makes it nearly impossible to perform a same level of analysis as having source code. Hence, I have been sort of fed up with doing low-level stuff without any progression or kownledge gain in analysis, and turned to static program analysis for a deep and systematic dive into theories and techniques behind "useful" analysis.
 
-The link of this course is [here](https://tai-e.pascal-lab.net/en/lectures.html). I have uploaded my solutions of all assignments, including constant propagation and pointer analysis. They are stored in a [git repo](https://github.com/SaerTrial/static-program-analysis-assignment).
+The link of this course is [here](https://tai-e.pascal-lab.net/en/lectures.html). I have uploaded my solutions of all assignments, including constant propagation and pointer analysis. They are stored in a [git repo](https://github.com/SaerTrial/static-program-analysis-assignment). All assignments have passed online judgement and earned full scores.
 
 ## Must and May Analysis
 
@@ -51,6 +51,24 @@ Finding such a variable will become more cumbersome if we implement both analyse
 
 ![Image alt]({{ site.baseurl }}/assets/image/2024-12-14-static-program-analysis/forward_backward_analysis.png
  "data flow direction between backward and forward analysis").
+
+
+## Flow-sensitive vs Flow-insensitive
+
+I haven't forgotten how much time I spent on Assignment 3, and have a mixed feeling at the end I found all test cases in the online judgement system are way trivial than I thought, even though I do learn a lot about how messy a flow-insensitive design could eventually become. However, it is quite a good mind opener, giving me some insights on when to take on flow-sensitivity or flow-insensitivty.
+
+Assignment 3 asks us to implement a dead code detector, I employed a flow-insensitive algorithm throughout my solution, by dealing with nested statement cases. 
+Although the hidden test cases in the online judgement system do not reach to this level of complexity, I still thought a lot and improved my analyse towards a thorough solution. 
+For example, having a if statement, we are required to combine constant propagation results to identify which branch will not be ever taken. 
+This is all this assignment about, while I am too foolish to consider nested if statements, or a nest of if or switch statements. 
+Thus, a problem to identify the exit point of a switch or if statement comes down to resolving intermediate representation, that requires a lot of considerations on nodes and their in edges to match an exit point to a corresponding statement. 
+Like the [section](IR) talking about AST and IR, converting IR back to AST may lose precision in syntax, especially for nested cases. 
+Hence, the most complicated situation is that an if and switch statement is mutually nested, making it pretty hard to measure their scope and to peal one off another; 
+moreover, flow-insensitive processing is global and out of order, that we have no idea about whether an if statement is nested in others, and whether this statement has already been deal with. 
+All those problems contribute a high level of difficulty for a flow-insensitive implementation.
+
+
+
 
 
 ## Constant Propagation
@@ -114,7 +132,7 @@ I draw a diagram to represent an abstract domain of constant propagation.
  "An abstract domain of constant propagation").
 
 
-### Abstract Syntax Tree vs Intermediate Representation
+[IR](### Abstract Syntax Tree vs Intermediate Representation)
 
 I write down AST and IR here, because I feel like those two concepts are internally connected as concrete and abstract domain could be transfered to each other.
 
