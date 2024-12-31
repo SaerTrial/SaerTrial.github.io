@@ -98,6 +98,12 @@ When it comes to context sensitivity, there are three approaches to maintain a c
 
 Taint analysis shares similar ideas of pointer analysis. That is to say that tainted objects are liquid and flow through pointer flow graph. Additionally, we need to configure source functions, sink functions, and taint transfer in a configuration file. whenever a source function is invoked, a taint object will be created and added into a corresponding var or a field. Taint transfer is better dealt with whenever a new object propagates and a method is called.
 
+## Forward Slicing for Taint Value Flow
+
+https://huhong789.github.io/papers/chen:sfuzz.pdf
+
+
+
 ## Abstract Interpretation
 
 This concept is not intruduced throughout this course, while I intentionally like to complete the learning of static program analysis thoroughly and turn to look into abstract interpretation in other materials. 
@@ -152,9 +158,32 @@ The abstract syntax tree is flattened as machine code and those language feature
  "AST vs IR").
 
 
+### Understanding Proof of Properties From Harmonic Series (Mathematics)
+
+Basically, in case that a certain property cannot be easily proven by a set of facts named A, we turn to resort to proof with other facts, e.g., another set of facts B that partially orders A. Let say A ⊆ B in a lattice.
+Moreover, the set B has advantages in mathematical formalization, which benefits us from proving the property. 
+Abstract interpretation could convert the set A into that of an abstract domains via abstract functions, which in turn is converted back to the previous concrete domain via concretization functions.
+The newly concretized set is B, for which the property is proven and holds. Thus, the property also holds for A according to their relationship in partial order.
+
+Harmonic Series shares the similar idea. Having the following series,
+```math
+\sum _{n=1}^{\infty }{\frac {1}{n}}=1+{\frac {1}{2}}+{\frac {1}{3}}+{\frac {1}{4}}+{\frac {1}{5}}+\cdots
+```
+
+we want to prove a property that it is a divergent series, where the values of these partial sums grow arbitrarily large. However, it is quite obvious that we cannot sort out those numbers somehow.
+So, what people do is to "downgrade" those numbers, which we could see as one round of abstraction and concretization. Those new numbers are smaller than previous ones, but they could be gathered somehow, that two 1/4 could sum up to 1/2, and four 1/8 could add up to 1/2 as well, thus we eventually prove that we have infinite 1/2 and the series will grow arbitrarily large.
+
+
+<img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/52165bdb2d88afeae9217446894857ce3f3a5d78" class="mwe-math-fallback-image-display mw-invert skin-invert" aria-hidden="true" style="vertical-align: -5.338ex; width:51.496ex; height:11.843ex;" alt="{\displaystyle {\begin{alignedat}{8}1&amp;+{\frac {1}{2}}&amp;&amp;+{\frac {1}{3}}&amp;&amp;+{\frac {1}{4}}&amp;&amp;+{\frac {1}{5}}&amp;&amp;+{\frac {1}{6}}&amp;&amp;+{\frac {1}{7}}&amp;&amp;+{\frac {1}{8}}&amp;&amp;+{\frac {1}{9}}&amp;&amp;+\cdots \\[5pt]{}\geq 1&amp;+{\frac {1}{2}}&amp;&amp;+{\frac {1}{\color {red}{\mathbf {4} }}}&amp;&amp;+{\frac {1}{4}}&amp;&amp;+{\frac {1}{\color {red}{\mathbf {8} }}}&amp;&amp;+{\frac {1}{\color {red}{\mathbf {8} }}}&amp;&amp;+{\frac {1}{\color {red}{\mathbf {8} }}}&amp;&amp;+{\frac {1}{8}}&amp;&amp;+{\frac {1}{\color {red}{\mathbf {16} }}}&amp;&amp;+\cdots \\[5pt]\end{alignedat}}}">
+
+
+Regardless of whether this equotion could form a lattice, it is very clear that the new numbers and old ones respect a relationship in partial order, and divergence holds for both. We could gain some insights on this proof, figuring out the origins of abstract interpretation.
+
+
+
 ## Static vs Dynamic Analysis
 
-Static analysis that follows over approximation will not miss any bugs but may generate false positives (in such a case, we need to adjust abstraction). In contrast, dynamic analysis facilitates under approximation and picks a piece of execution path to be analyzed. Its advantages mainfest in not generating false positives, but missing out on some bugs. Hence, those two approaches are complementary.
+Static analysis that follows over-approximation will not miss any bugs but may generate false positives (in such a case, we need to adjust abstraction). In contrast, dynamic analysis facilitates under approximation and picks a piece of execution path to be analyzed. Its advantages mainfest in not generating false positives, but missing out on some bugs. Hence, those two approaches are complementary.
 
 My research interests lie at firmware re-hosting and program testing. Basically, emulation is an over-approximation approach to running the target program with all possible states. Hardware-in-the-loop is another approach without considerations on hardware dependency. Firmware binary runs on its own MCU, and analysts get access to its execution states via debugging interfaces, such as JTAG. Then they aggregate those information to analyze where potential bugs or vulnerabilities may appear. 
 
@@ -162,3 +191,5 @@ My research interests lie at firmware re-hosting and program testing. Basically,
 Frankly, I personally have a strong preference to static analysis mainly because dynamic analysis introduces uncertainties due to its under approximation. Thus, many cutting edge research work based on this approach intentionally claims their practicality and usability for industries. It sounds reasonable to apply this approach epsecially when no new theories are found in program analysis. An attempt to combine both of them is a good practice as well. 
 
 ## Symbolic and Concolic Execution
+
+TODO
