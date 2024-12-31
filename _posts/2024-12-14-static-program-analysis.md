@@ -98,9 +98,17 @@ When it comes to context sensitivity, there are three approaches to maintain a c
 
 Taint analysis shares similar ideas of pointer analysis. That is to say that tainted objects are liquid and flow through pointer flow graph. Additionally, we need to configure source functions, sink functions, and taint transfer in a configuration file. whenever a source function is invoked, a taint object will be created and added into a corresponding var or a field. Taint transfer is better dealt with whenever a new object propagates and a method is called.
 
-## Forward Slicing for Taint Value Flow
+### Forward Slicing for Taint Value Flow
 
-https://huhong789.github.io/papers/chen:sfuzz.pdf
+Slicing is a technique, pearing interesting execution paths from a whole program. Specifically, a dependency graph that contains control and data dependencies, is generated statically or dynamically. Slicing can be conducted in a forward or backward manner. Both of them are easily understandable, but sort of vague in terms of the actual adaption. I only knew its concept until read the [paper-sfuzz](https://huhong789.github.io/papers/chen:sfuzz.pdf). The paper aims at identifying vulnerabilities via taint analysis, which derives execution trees. Those trees in turn are dependency graphs. I refer to a [diagram](https://www.debuggingbook.org/html/Slicer.html) from debuggingbook. 
+
+
+![Image alt]({{ site.baseurl }}/assets/image/2024-12-14-static-program-analysis/dependency_graph.png
+ "control and data dependencies").
+
+Dotted lines donate control dependencies, while solid lines donate data dependencies.
+
+Why does this graph contribute to taint analysis? If we only pick over those data points that are actually derived from source functions, then a whole graph turns into taint value flows, which we utilize to confirm if any taint data flows into a sink function. Moreover, a lot of effort in combining graphs of different functions is required. 
 
 
 
