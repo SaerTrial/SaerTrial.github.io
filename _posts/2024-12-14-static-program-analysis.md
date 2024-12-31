@@ -100,7 +100,7 @@ Taint analysis shares similar ideas of pointer analysis. That is to say that tai
 
 ### Forward Slicing for Taint Value Flow
 
-Slicing is a technique, pearing interesting execution paths from a whole program. Specifically, a dependency graph that contains control and data dependencies, is generated statically or dynamically. Slicing can be conducted in a forward or backward manner. Both of them are easily understandable, but sort of vague in terms of the actual adaption. I only knew its concept until read the [paper-sfuzz](https://huhong789.github.io/papers/chen:sfuzz.pdf). The paper aims at identifying vulnerabilities via taint analysis, which derives execution trees. Those trees in turn are dependency graphs. I refer to a [diagram](https://www.debuggingbook.org/html/Slicer.html) from debuggingbook, that has been maintained by Andreas Zeller. 
+Slicing is a technique, pearing interesting execution paths from a whole program. Specifically, a dependency graph that contains control and data dependencies, is generated statically or dynamically. Slicing can be conducted in a forward or backward manner. Both of them are easily understandable, but sort of vague in terms of the actual adaption. I only knew its concept until read the paper [sfuzz](https://huhong789.github.io/papers/chen:sfuzz.pdf). The paper aims at identifying vulnerabilities via taint analysis, which derives execution trees. Those trees in turn are dependency graphs. I refer to a [diagram](https://www.debuggingbook.org/html/Slicer.html) from debuggingbook, that has been maintained by Andreas Zeller. 
 
 
 ![Image alt]({{ site.baseurl }}/assets/image/2024-12-14-static-program-analysis/dependency_graph.png
