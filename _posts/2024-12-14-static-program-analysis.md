@@ -104,9 +104,8 @@ Slicing is a technique, pearing interesting execution paths from a whole program
 
 
 ![Image alt]({{ site.baseurl }}/assets/image/2024-12-14-static-program-analysis/dependency_graph.png
- "control and data dependencies").
+ "Control and data dependencies. Dotted lines donate control dependencies, while solid lines donate data dependencies.").
 
-Dotted lines donate control dependencies, while solid lines donate data dependencies.
 
 Why does this graph contribute to taint analysis? If we only pick over those data points that are actually derived from source functions, then a whole graph turns into taint value flows, which we utilize to confirm if any taint data flows into a sink function. Moreover, a lot of effort in combining graphs of different functions is required. 
 
