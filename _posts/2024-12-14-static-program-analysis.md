@@ -176,13 +176,13 @@ Harmonic Series shares the similar idea. Having the following series,
 <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/be4af5d7938db7d06367c7df3db08e26886d626c" class="mwe-math-fallback-image-display mw-invert skin-invert" aria-hidden="true" style="vertical-align: -3.005ex; width:35.153ex; height:6.843ex;" alt="{\displaystyle \sum _{n=1}^{\infty }{\frac {1}{n}}=1+{\frac {1}{2}}+{\frac {1}{3}}+{\frac {1}{4}}+{\frac {1}{5}}+\cdots }">
 
 we want to prove a property that it is a divergent series, where the values of these partial sums grow arbitrarily large. However, it is quite obvious that we cannot sort out those numbers somehow.
-So, what people do is to "downgrade" those numbers, which we could see as one round of abstraction and concretization. Those new numbers are smaller than previous ones, but they could be gathered somehow, that two 1/4 could sum up to 1/2, and four 1/8 could add up to 1/2 as well, thus we eventually prove that we have infinite 1/2 and the series will grow arbitrarily large.
+So, what people do is to "downgrade" those numbers, which we could see as one round of abstraction and concretization. Those new numbers are smaller than previous ones, but they embody some similarities to allow gathering of same numbers, such that two 1/4 could sum up to 1/2, and four 1/8 could add up to 1/2 as well, thus we eventually prove that we have infinite 1/2 and the series will grow arbitrarily large.
 
 
 <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/52165bdb2d88afeae9217446894857ce3f3a5d78" class="mwe-math-fallback-image-display mw-invert skin-invert" aria-hidden="true" style="vertical-align: -5.338ex; width:51.496ex; height:11.843ex;" alt="{\displaystyle {\begin{alignedat}{8}1&amp;+{\frac {1}{2}}&amp;&amp;+{\frac {1}{3}}&amp;&amp;+{\frac {1}{4}}&amp;&amp;+{\frac {1}{5}}&amp;&amp;+{\frac {1}{6}}&amp;&amp;+{\frac {1}{7}}&amp;&amp;+{\frac {1}{8}}&amp;&amp;+{\frac {1}{9}}&amp;&amp;+\cdots \\[5pt]{}\geq 1&amp;+{\frac {1}{2}}&amp;&amp;+{\frac {1}{\color {red}{\mathbf {4} }}}&amp;&amp;+{\frac {1}{4}}&amp;&amp;+{\frac {1}{\color {red}{\mathbf {8} }}}&amp;&amp;+{\frac {1}{\color {red}{\mathbf {8} }}}&amp;&amp;+{\frac {1}{\color {red}{\mathbf {8} }}}&amp;&amp;+{\frac {1}{8}}&amp;&amp;+{\frac {1}{\color {red}{\mathbf {16} }}}&amp;&amp;+\cdots \\[5pt]\end{alignedat}}}">
 
 
-Regardless of whether this equotion could form a lattice, it is very clear that the new numbers and old ones respect a relationship in partial order, and divergence holds for both. We could gain some insights on this proof, figuring out the origins of abstract interpretation.
+Regardless of whether this equotion could form a lattice, it is very clear that the new numbers and old ones respect a relationship in partial order, and divergence holds for both. We could gain some insights on the connection between abstract interpretation and math.
 
 
 
