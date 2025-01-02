@@ -98,7 +98,7 @@ When it comes to context sensitivity, there are three approaches to maintain a c
 
 Taint analysis shares similar ideas of pointer analysis. That is to say that tainted objects are liquid and flow through pointer flow graph. Additionally, we need to configure source functions, sink functions, and taint transfer in a configuration file. whenever a source function is invoked, a taint object will be created and added into a corresponding var or a field. Taint transfer is better dealt with whenever a new object propagates and a method is called.
 
-### Forward Slicing for Taint Value Flow
+### Slicing for Taint Value Flow
 
 Slicing is a technique, pearing interesting execution paths from a whole program. Specifically, a dependency graph that contains control and data dependencies, is generated statically or dynamically, and is often used to track failure origins. Slicing can be conducted in a forward or backward manner. Both of them are easily understandable, but sort of vague in terms of the actual adaption. I only knew its concept until read the paper [sfuzz](https://huhong789.github.io/papers/chen:sfuzz.pdf). The paper aims at identifying vulnerabilities via taint analysis, which derives execution trees. Those trees in turn are dependency graphs. I refer to a [diagram](https://www.debuggingbook.org/html/Slicer.html) from debuggingbook, that has been maintained by Andreas Zeller. 
 
@@ -109,7 +109,7 @@ Slicing is a technique, pearing interesting execution paths from a whole program
 
 Why does this graph contribute to taint analysis? If we only pick over those data points that are actually derived from source functions, then a whole graph turns into taint value flows, which we utilize to confirm if any taint data flows into a sink function. Moreover, a lot of effort in combining graphs of different functions is required. 
 
-
+Backward slicing does the opposite, given a data point, tracking back to its origins. This can be used for POC verification of a certain execution path. Of course, there are other potential, that I haven't known yet~
 
 ## Abstract Interpretation
 
