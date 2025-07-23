@@ -6,7 +6,7 @@ categories:
 
 This post details how to create a custom board in QEMU. Before getting our hands dirty, let me give you some brief introduction about QEMU. QEMU is a very popular tool in system security academia, and a lot of researchers have made custom changes to implement some dedicated functionality, e.g., fuzzing, instrumentation, program analysis, fault injection. 
 
-Moreover, embedded software engineers can benefit from QEMU by creating a prototype board and developing firmware without actually designing a board in the PCB level. However, there are already many building blocks in QEMU and we do not need to build every wheel from scratch, e.g., interrupt controller, CPU. Hence, this post attempts to clarity these steps to ease difficulty in development. In this post, I base QEMU 10.0.2 to implement necessary peripherals to emulate our toy firmware binary built for `STM32H7S78-DK`. This post assocates to one of my [QEMU-STM32H7S78-DK](https://github.com/SaerTrial/QEMU-STM32H7S78-DK). Interesting readers can look into commits to see changes made.
+Moreover, embedded software engineers can benefit from QEMU by creating a prototype board and developing firmware without actually designing a board in the PCB level. However, there are already many building blocks in QEMU and we do not need to build every wheel from scratch, e.g., interrupt controller, CPU. Hence, this post attempts to clarity these steps to ease difficulty in development. In this post, I base QEMU 10.0.2 to implement necessary peripherals to emulate our toy firmware binary built for `STM32H7S78-DK`. This post assocates to [QEMU-STM32H7S78-DK](https://github.com/SaerTrial/QEMU-STM32H7S78-DK). Interesting readers can look into commits to see changes made.
 
 # What board do you want to extend?
 
@@ -367,4 +367,42 @@ testing branch #1...
 testing branch #1...
 testing branch #1...
 ```
+
+## Why another testing branch is not taken?
+
+This is an interesting question. A string "testing branch #0" should have been printed out. Why does it never show up? Upon checking into the firmware logic, the value returned by `rand()` should determine which branch to be taken. The current log seems like that the function always emits the same value.
+
+I did reverse engineering on the generated firmware binary with Ghidra and found the random seed comes from `__aeabi_read_tp`. It turns out that the variable `__tls` located at ram determines such a seed generation. However, I did not set up SRAM as an IO memory region. So, it may ask for a trick to implement a hook callback that returns a real random number whenever there is a memory access to this variable. 
+
+```c
+ long rand(void)
+
+{
+  longlong lVar1;
+  undefined4 in_r0;
+  int iVar2;
+  int iVar3;
+  uint uVar4;
+  uint uVar5;
+  undefined8 uVar6;
+  
+  uVar6 = __aeabi_read_tp(in_r0,8);
+  iVar3 = (int)((ulonglong)uVar6 >> 0x20);
+  iVar2 = (int)uVar6;
+  uVar4 = *(uint *)(iVar2 + iVar3);
+  lVar1 = (ulonglong)uVar4 * 0x4c957f2d;
+  uVar5 = (uint)lVar1;
+  *(uint *)(iVar2 + iVar3) = uVar5 + 1;
+  uVar4 = *(int *)(iVar2 + iVar3 + 4) * 0x4c957f2d +
+          uVar4 * 0x5851f42d + (int)((ulonglong)lVar1 >> 0x20) + (uint)(0xfffffffe < uVar5);
+  *(uint *)(iVar2 + iVar3 + 4) = uVar4;
+  return uVar4 & 0x7fffffff;
+}
+
+undefined4 __aeabi_read_tp(void)
+{
+  return __tls;
+}
+```
+
 
