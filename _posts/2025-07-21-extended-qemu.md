@@ -351,7 +351,7 @@ The proceeding commmand for configuration. Note that you may need to enable trac
 mkdir build
 cd build
 ../configure --target-list=arm-softmmu --enable-debug --enable-trace-backends=simple
-make -j(nproc)
+ninja
 ```
 
 # Emulate the firmware binary
@@ -368,11 +368,11 @@ testing branch #1...
 testing branch #1...
 ```
 
-## Why another testing branch is not taken?
+## Why is another testing branch not taken?
 
 This is an interesting question. A string "testing branch #0" should have been printed out. Why does it never show up? Upon checking into the firmware logic, the value returned by `rand()` should determine which branch to be taken. The current log seems like that the function always emits the same value.
 
-I did reverse engineering on the generated firmware binary with Ghidra and found the random seed comes from `__aeabi_read_tp`. It turns out that the variable `__tls` located at ram determines such a seed generation. However, I did not set up SRAM as an IO memory region. So, it may ask for a trick like Unicorn TCG ops to implement a hook callback for memory accesses. The callback functon returns a real random number whenever there is a memory access to this variable. 
+I did reverse engineering on the generated firmware binary with Ghidra and found the random seed comes from `__aeabi_read_tp`. It turns out that the variable `__tls` located at `0x24000010` (SRAM) determines seed generation. However, I did not set up SRAM as an IO memory region. So, it may ask for a trick like Unicorn TCG ops to implement a hook callback for memory accesses. The callback functon returns a real random number whenever there is a memory access to this variable. 
 
 ```c
  long rand(void)
