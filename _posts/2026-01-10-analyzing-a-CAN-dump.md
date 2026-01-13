@@ -146,7 +146,7 @@ Improve the script to show more details for each UDS message, since it is quite 
 [UDS] ECUReset, 0x11,
 ```
 
-Very informative by a given address - a0080000, that seems like a Tricore chip. What else to do is to extract firmawre from payload of UDS TransferData messages and make sure the same size as 0xd0ee6.
+As shown above, the flashing starts at 0xa0080000 with the size of 0xd0ee6, that seems like a Tricore chip. The further step is to extract all data in the TransferData payload and verify if the size is the same as shown.
 
 
 # ECU flashing
@@ -155,12 +155,12 @@ The above UDS messages indicate a typical ECU flashing process and usually start
 
 1. Reuqest programming session (SID 0x10)
 2. Authenticate (SID 0x27)
-3. Request Download (SID 0x34)
-4. Transfer Data (SID 0x36)
-5. Request Transfer Exit (SID 0x37)
-6. Check Dependencies Routine (SID 0x31)
+3. RoutineControl (SID 0x31 0xFF00) - erase memory
+4. Request Download (SID 0x34)
+5. Transfer Data (SID 0x36)
+6. Request Transfer Exit (SID 0x37) - indicate all data has been sent
+7. RoutineControl (SID 0x31 0xFF01) -  verify the checksum and mark the firmware as bootable by placing a OK signature
 
-Be aware that when "Request Download" is performed, the application area is erased by bootloader and becomes empty until the payload of "Transfer Data" fills up. The very last step is to validate the downloaded firmware by checksum or others in "Check Dependencies Routine", and place a OK signature before the download area. 
 
 
 
