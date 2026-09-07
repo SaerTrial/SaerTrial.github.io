@@ -57,6 +57,11 @@ defaults:
     values:
       layout: "post"
       comments: true
+  -
+    scope:
+      path: "google14c5ee773b8c30ae.html"
+    values:
+      sitemap: false
 
 # Atom feed
 feed:
