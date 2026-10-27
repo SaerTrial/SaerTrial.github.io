@@ -20,7 +20,7 @@ My prototype used this path to observation. I flashed instrumented firmware to a
 
 ## Placing probes at the events I cared about
 
-The project aims to record nondeterministic control-flow events that could depend on external state: conditional branches, switch cases, indirect-call targets, and interrupt entry and return. LLVM IR passes inserted the branch, switch, and call hooks. ARM machine passes handled interrupt context and reserved `r9` for a [software instruction counter](https://dl.acm.org/doi/10.1145/70082.68189) incremented before selected backward branches. The design used the counter and interrupted PC to locate interrupt occurrences relative to execution. That method requires complete coverage of repeated control-flow paths; calls and parts of the standard libraries remained uncovered in this prototype.
+The project aims to record nondeterministic control-flow events that could depend on external state: conditional branches, switch cases, indirect-call targets, and interrupt entry and return. LLVM IR passes inserted the branch, switch, and call hooks. ARM machine passes handle interrupt context and reserved `r9` for a [software instruction counter](https://dl.acm.org/doi/10.1145/70082.68189) incremented before selected backward branches. The design used the counter and interrupted PC to locate interrupt occurrences relative to execution. That method requires complete coverage of repeated control-flow paths; calls and parts of the standard libraries remained uncovered in this prototype.
 
 The following fragments present **Ghidra decompilation** of the firmware before and after instrumentation:
 
