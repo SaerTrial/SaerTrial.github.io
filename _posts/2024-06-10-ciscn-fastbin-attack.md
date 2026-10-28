@@ -3,6 +3,8 @@ title: A very typical heap challenge
 categories:
 - ctf/pwn
 - heap
+redirect_from:
+- "/ctf/pwn/heap/2024/06/10/ciscn-fastbin-attack/"
 ---
 
 This post demonstrates an in-depth analysis of a fairly typical heap challenge - fastbin attack. Even though this is a very first time on analyzing heap challenges, it does not mean that I have to follow common approaches, limiting the use of other novel techiniques. Additionally, I find it more educative to share some patterns of this type of vulnerability, so as to apply those patterns in a next similar challenge. The [attachment]({{ site.baseurl }}/assets/binary/2024-06-10-ciscn-fastbin-attach.md/orange_cat_diary_cffa870fbc6e887360d16817570431a9.zip) consists of an executable and a libc library of the version 2.23. This challenge comes from CISCN 2024.

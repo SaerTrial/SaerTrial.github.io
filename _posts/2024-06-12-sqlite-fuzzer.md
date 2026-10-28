@@ -3,6 +3,8 @@ title: A grammar-based fuzzer for sqlite3
 categories:
 - fuzzing
 - database
+redirect_from:
+- "/fuzzing/database/2024/06/12/sqlite-fuzzer/"
 ---
 
 This post links to a [fuzzing project for sqlite3](https://github.com/SaerTrial/sqlite-fuzzer), explaining my approach and implementation to fuzz sqlite3 sort of effectively.

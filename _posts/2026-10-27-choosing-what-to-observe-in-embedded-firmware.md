@@ -4,6 +4,8 @@ categories:
 - program analysis
 - embedded systems
 - instrumentation
+redirect_from:
+- "/program analysis/embedded systems/instrumentation/2026/10/27/choosing-what-to-observe-in-embedded-firmware/"
 ---
 
 I used to work on a research project I wrote up as *Record in Embedded Devices and Replay in Emulators*. The project aims to collect selected events from a running embedded device (with Cortex-M as a test target). Those events are sent to a remote backend, which attempts to reconstruct the execution for later dynamic analysis. Here I want to focus on one part of that work: compile-time instrumentation. It made me think about how much freedom we gain when we can define the events an analysis receives.

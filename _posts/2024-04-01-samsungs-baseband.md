@@ -3,6 +3,8 @@ title: Emulating Samsungs baseband with Avatar2 and PyPanda
 categories:
 - emulation
 - firmware reversing
+redirect_from:
+- "/emulation/firmware reversing/2024/04/01/samsungs-baseband/"
 ---
 
 This post details the previous work presented in the talk of BlackHat USA 2020 - [Emulating-Samsungs-Baseband-For-

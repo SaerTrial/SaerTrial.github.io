@@ -5,6 +5,8 @@ categories:
 - firmware reversing
 - hardware
 - ctf
+redirect_from:
+- "/emulation/firmware reversing/hardware/ctf/2024/08/04/sctf-password-locker/"
 ---
 
 You could find more inforamtion about this challenge at this [link](https://ctftime.org/task/12253). I am going to propose three different approaches to solve this challenge, and those approaches range from hardware to emulation, instead of just static analysis.

@@ -2,6 +2,8 @@
 title:  Extending STM32H7S78-DK in QEMU
 categories:
 - emulation
+redirect_from:
+- "/emulation/2025/07/21/extended-qemu/"
 ---
 
 This post details how to create a custom board in QEMU. Before getting our hands dirty, let me give you some brief introduction about QEMU. QEMU is a very popular tool in system security academia, and a lot of researchers have made custom changes to implement some dedicated functionality, e.g., fuzzing, instrumentation, program analysis, fault injection. 

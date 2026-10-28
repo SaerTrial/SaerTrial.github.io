@@ -2,6 +2,8 @@
 title: What is paraphrasing?
 categories:
 - academic writing
+redirect_from:
+- "/academic writing/2024/06/24/paraphrasing/"
 ---
 
 This post introduces paraphrasing, in terms of its definition, why and how.

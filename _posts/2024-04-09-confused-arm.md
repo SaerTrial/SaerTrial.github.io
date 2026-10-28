@@ -4,6 +4,8 @@ categories:
 - ctf/re
 - emulation
 - firmware reversing
+redirect_from:
+- "/ctf/re/emulation/firmware reversing/2024/04/09/confused-arm/"
 ---
 
 In this post, I will be solving a Capture the Flag (CTF) challenge that was originally from PCTF but later modified by a book dedicated to CTF-bootcamp. This challenge requires CTF players to emulate an [ARM firmware image]({{ site.baseurl }}/assets/binary/2024-04-09-confused-arm/confusedARM.hex) and correct a faulty cryptography implementation in the firmware logic.

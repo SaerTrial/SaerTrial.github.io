@@ -3,6 +3,8 @@ title: Analyzing ECU flashing in a CAN dump
 categories:
 - automotive security
 - ecu flashing
+redirect_from:
+- "/automotive security/ecu flashing/2026/01/10/analyzing-a-CAN-dump/"
 ---
 
 I took the training "Hands-on car hacking" in the hardwear.io netherlands 2025. One of CTF challenges is to analyze a CAN dump and extract ECU firmware from UDS messages. 

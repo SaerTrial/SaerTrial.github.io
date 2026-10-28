@@ -2,6 +2,8 @@
 title: Static Program Analysis Notes
 categories:
 - program analysis
+redirect_from:
+- "/program analysis/2024/12/14/static-program-analysis/"
 ---
 
 Back in the day, I was always confused about how a "professional" analysis looks like. I has indeed gained some experience of binary analysis from CTF games, such as re-constructing a control flow, and resolving a function as well as data structure somehow. Unlike program analysis, we have access to source code and origin of programming languages. A good example is that java developers usually facilitate reflection to decouple modules according to principles of software engineering. A binary file does not embody original programming logic and language features, and even a stripped binary file loses information about symbols of its project and libraries. 
