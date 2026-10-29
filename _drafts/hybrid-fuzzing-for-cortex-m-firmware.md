@@ -12,9 +12,9 @@ My [concolic-fuzzing project](https://github.com/SaerTrial/concolic-fuzzing) con
 
 ## Two engines and a shared queue
 
-The fast execution path uses AFL++ and my `TriforceQEMU` fork. AFL++ mutates input files; the emulator supplies a forkserver, consumes those files during firmware execution, and reports coverage.
+The fast execution path uses AFL++ and my `triforce-qemu` fork. AFL++ mutates input files; the emulator supplies a forkserver, consumes those files during firmware execution, and reports coverage.
 
-The second path uses `concolic-replay`, a system-mode extension of SymQEMU. [SymQEMU](https://www.ndss-symposium.org/ndss-paper/symqemu-compilation-based-symbolic-execution-for-binaries/) adds symbolic execution to binary translation by modifying QEMU's intermediate representation before it is translated to host code. My fork combines that machinery with a configurable firmware execution environment.
+The second path uses `concolic-executor`, a system-mode extension of SymQEMU. [SymQEMU](https://www.ndss-symposium.org/ndss-paper/symqemu-compilation-based-symbolic-execution-for-binaries/) adds symbolic execution to binary translation by modifying QEMU's intermediate representation before it is translated to host code. My fork combines that machinery with a configurable firmware execution environment.
 
 A modified [SymCC fuzzing helper](https://github.com/eurecom-s3/symcc/blob/master/docs/Fuzzing.txt) connects the two:
 
@@ -23,11 +23,11 @@ AFL++ queue
     |
     | select an unseen input
     v
-concolic-replay + SymCC runtime
+concolic-executor + SymCC runtime
     |
     | generate candidate inputs
     v
-afl-showmap + TriforceQEMU
+afl-showmap + triforce-qemu
     |
     | keep interesting candidates in the helper queue
     v
